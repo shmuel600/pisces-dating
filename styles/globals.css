@@ -1,5 +1,16 @@
 html,
 body {
+  background-image: url("https://wallpaperaccess.com/full/369045.jpg");
+  background-image: url("https://img5.goodfon.com/original/1920x1080/d/90/fon-wallpaper-lines-abstract.jpg");
+  background-color: rgba(48, 48, 48, 0.6);
+  background-blend-mode: soft-light; 
+  background-size: cover;
+  background-color: rgb(48, 48, 48);
+  width: 100%;
+  min-width: 65vh;
+  min-height: 120vh;
+  overflow-y: hidden;
+  /* overflow-x: hidden; */
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +24,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-position-x: center;
+  }
 }
