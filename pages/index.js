@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router';
 // import Image from 'next/image'
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +18,7 @@ export default function Home() {
           <em>“There are many fish in the sea, but never let a good one swim away.”</em>
         </h1>
         <br />
-        <button className={styles.btn}>New User</button>
+        <button className={styles.btn} onClick={() => router.push('registerUser')}>New User</button>
         <button className={styles.btn}>New Business</button>
         {/* old code */}
         <>
