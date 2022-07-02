@@ -6,8 +6,6 @@ function Dates() {
         <div className={styles.container}>
             <div className={styles.main} style={{ color: 'whitesmoke' }}>
                 Dates
-                <br />
-                <Link href="/">Home</Link>
             </div>
         </div>
     )

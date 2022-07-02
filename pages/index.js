@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router';
+import * as React from 'react';
+import Context from '../contexts/Context';
 // import Image from 'next/image'
 
 export default function Home() {
   const router = useRouter();
+  const { registered } = React.useContext(Context);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,16 +17,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
-          <em>“There are many fish in the sea, but never let a good one swim away.”</em>
-        </h1>
-        <br />
-        <button className={styles.btn} onClick={() => router.push('registerUser')}>New User</button>
-        <button className={styles.btn}>New Business</button>
-        {/* old code */}
-        <>
-          {/* <h1 className={styles.title}>
+      {!registered &&
+        <main className={styles.main}>
+          <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
+            <em>“There are many fish in the sea, but never let a good one swim away.”</em>
+          </h1>
+          <br />
+          <button className={styles.btn} onClick={() => router.push('registerUser')}>New User</button>
+          <button className={styles.btn}>New Business</button>
+          {/* old code */}
+          <>
+            {/* <h1 className={styles.title}>
             Welcome to <a href="https://nextjs.org">Next.js!</a>
           </h1>
           <p className={styles.description}>
@@ -55,8 +60,9 @@ export default function Home() {
               </p>
             </a>
           </div> */}
-        </>
-      </main>
+          </>
+        </main>
+      }
 
       <footer className={styles.footer}>
         {/* old code */}

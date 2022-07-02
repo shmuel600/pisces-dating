@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Step from '@mui/material/Step';
 import StepContent from '@mui/material/StepContent';
 import StepLabel from '@mui/material/StepLabel';
@@ -9,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
+import Context from '../contexts/Context';
 
 const steps = [
     {
@@ -33,6 +33,7 @@ const steps = [
 
 export default function RegisterUser() {
     const [activeStep, setActiveStep] = React.useState(0);
+    const { setRegistered } = React.useContext(Context);
     const router = useRouter();
 
     const handleNext = () => {
@@ -43,8 +44,22 @@ export default function RegisterUser() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
+    const createProfile = () => {
+        setRegistered(true);
+        const user =
+        {
+            name: "User Name",
+            email: "mail@adress.com",
+            password: "password123"
+        };
+        const options =
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        };
+        // fetch("/api/user", options);
+        router.push('profile');
     };
 
     return (
@@ -90,8 +105,8 @@ export default function RegisterUser() {
                     {activeStep === steps.length && (
                         <Button
                             variant="contained"
-                            href='profile'
-                            sx={{ mt: 1, mr: 1, color: 'white' }}
+                            onClick={createProfile}
+                            sx={{ mt: 1, mr: 1 }}
                         >
                             Create Profile
                         </Button>
