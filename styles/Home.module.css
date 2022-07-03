@@ -121,10 +121,10 @@
   background-size: 300% 100%;
   background-color: transparent;
   background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
-  /* background-clip: padding-box; */
-  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
   border-radius: 50px;
   transition: all .4s ease-in-out;
+  /* background-clip: padding-box; */
+  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
 }
 
 .btn:hover {

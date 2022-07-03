@@ -6,6 +6,18 @@ const user = new Schema({
         type: String,
         required: true
     },
+    gender: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    dateOfBirth: {
+        type: Date,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -17,6 +29,27 @@ const user = new Schema({
     since: {
         type: Date,
         default: Date.now
+    },
+    bio: {
+        type: String
+    },
+    personalityType: {
+        type: String,
+        required: true
+    },
+    loveLanguageGiving: {
+        type: Object,
+        required: true
+    },
+    loveLanguageRecieving: {
+        type: Object,
+        required: true
+    },
+    bio: {
+        type: String
+    },
+    likedLocations: {
+        type: Array
     }
 });
 

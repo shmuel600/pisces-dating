@@ -1,17 +1,19 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import Profile from '@mui/icons-material/AccountCircle';
+import ProfileSelected from '@mui/icons-material/AccountCircleOutlined';
+import Chat from '@mui/icons-material/ChatRounded';
+import ChatSelected from '@mui/icons-material/ChatOutlined';
+import Dates from '@mui/icons-material/Favorite';
+import DatesSelected from '@mui/icons-material/FavoriteBorderRounded';
+import Locations from '@mui/icons-material/LocationOn';
+import LocationsSelected from '@mui/icons-material/LocationOnOutlined';
+import Settings from '@mui/icons-material/MenuRounded';
+import SettingsSelected from '@mui/icons-material/ListRounded';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+// import Settings from '@mui/icons-material/Settings';
+// import SettingsSelected from '@mui/icons-material/SettingsOutlined';
 
 export default function Footer() {
     const router = useRouter();
@@ -43,8 +45,8 @@ export default function Footer() {
                 value="settings"
                 icon={
                     page === "settings" ?
-                        <ListRoundedIcon sx={{ transform: 'scale(1.5)' }} /> :
-                        <MenuRoundedIcon sx={{ transform: 'scale(1.5)' }} />
+                        <SettingsSelected sx={{ transform: 'scale(1.7)' }} /> :
+                        <Settings sx={{ transform: 'scale(1.7)' }} />
                 }
                 onClick={() => handleClick('settings')}
             />
@@ -53,8 +55,8 @@ export default function Footer() {
                 value="locations"
                 icon={
                     page === "locations" ?
-                        <LocationOnOutlinedIcon sx={{ transform: 'scale(1.5)' }} /> :
-                        <LocationOnIcon sx={{ transform: 'scale(1.5)' }} />
+                        <LocationsSelected sx={{ transform: 'scale(1.7)' }} /> :
+                        <Locations sx={{ transform: 'scale(1.7)' }} />
                 }
                 onClick={() => handleClick('locations')}
             />
@@ -63,8 +65,8 @@ export default function Footer() {
                 value="dates"
                 icon={
                     page === "dates" ?
-                        <FavoriteBorderRoundedIcon sx={{ transform: 'scale(1.5)' }} /> :
-                        <FavoriteIcon sx={{ transform: 'scale(1.5)' }} />
+                        <DatesSelected sx={{ transform: 'scale(1.7)' }} /> :
+                        <Dates sx={{ transform: 'scale(1.7)' }} />
                 }
                 onClick={() => handleClick('dates')}
             />
@@ -73,8 +75,8 @@ export default function Footer() {
                 value="chat"
                 icon={
                     page === "chat" ?
-                        <ChatOutlinedIcon sx={{ transform: 'scale(1.5)' }} /> :
-                        <ChatRoundedIcon sx={{ transform: 'scale(1.5)' }} />
+                        <ChatSelected sx={{ transform: 'scale(1.7)' }} /> :
+                        <Chat sx={{ transform: 'scale(1.7)' }} />
                 }
                 onClick={() => handleClick('chat')}
             // or matched user profile pic
@@ -84,8 +86,8 @@ export default function Footer() {
                 value="profile"
                 icon={
                     page === "profile" ?
-                        <AccountCircleOutlinedIcon sx={{ transform: 'scale(1.5)' }} /> :
-                        <AccountCircleIcon sx={{ transform: 'scale(1.5)' }} />
+                        <ProfileSelected sx={{ transform: 'scale(1.7)' }} /> :
+                        <Profile sx={{ transform: 'scale(1.7)' }} />
                 }
                 onClick={() => handleClick('profile')}
             // or user profile pic

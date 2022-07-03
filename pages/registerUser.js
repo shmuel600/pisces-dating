@@ -12,22 +12,20 @@ import Context from '../contexts/Context';
 
 const steps = [
     {
-        label: 'Select campaign settings',
-        description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
-    },
-    {
-        label: 'Create an ad group',
+        label: 'General details',
         description:
-            'An ad group contains one or more ads which target a shared set of keywords.',
+            `Here will be: name, gender, date of birth (age), 
+            location (request location), prefarances, maybe more stuff like height.`,
     },
     {
-        label: 'Create an ad',
-        description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+        label: '5 love languages',
+        description:
+            `Here will be a test to check the 5 love languages of the user, on both recieving/giving ends.`,
+    },
+    {
+        label: '16 personalities',
+        description:
+            `Here will be a link to the 16 personalities test (myers-briggs type indicator / MBTI).`,
     },
 ];
 
@@ -46,19 +44,44 @@ export default function RegisterUser() {
 
     const createProfile = () => {
         setRegistered(true);
+        const dateOfBirth = new Date('1970-12-30T00:00:00');
+        dateOfBirth.setDate(18);
+        dateOfBirth.setMonth(6);
+        dateOfBirth.setFullYear(1984);
+        const yearDifference = new Date().getUTCFullYear() - new Date(dateOfBirth).getUTCFullYear();
+        const currentDate = new Date().getMonth() * 100 + new Date().getDate();
+        const birthDate = new Date(dateOfBirth).getMonth() * 100 + new Date(dateOfBirth).getDate();
+        const birthdayPassed = currentDate < birthDate ? false : true;
+        const age = birthdayPassed ? yearDifference : yearDifference - 1;
         const user =
         {
             name: "User Name",
+            gender: "male",
+            age,
+            dateOfBirth,
             email: "mail@adress.com",
-            password: "password123"
+            password: "password123",
+            personalityType: "infj",
+            loveLanguageGiving: {
+                words: 3,
+                acts: 3,
+                gifts: 3,
+                touch: 3,
+                time: 3
+            },
+            loveLanguageRecieving: {
+                words: 2,
+                acts: 2,
+                gifts: 2,
+                touch: 2,
+                time: 2
+            }
         };
-        const options =
-        {
+        fetch("/api/user", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
-        };
-        // fetch("/api/user", options);
+        });
         router.push('profile');
     };
 
@@ -79,7 +102,7 @@ export default function RegisterUser() {
                                     {step.label}
                                 </StepLabel>
                                 <StepContent>
-                                    <Typography>{step.description}</Typography>
+                                    <Typography color={'whitesmoke'}>{step.description}</Typography>
                                     <Box sx={{ mb: 2 }}>
                                         <Box>
                                             <Button

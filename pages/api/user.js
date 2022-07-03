@@ -6,15 +6,22 @@ const handler = async (req, res) => {
     if (req.method === 'POST') {
         console.log("POST");
         // Check if name, email or password is provided
-        const { name, email, password } = req.body;
-        if (name && email && password) {
+        const { name, gender, age, dateOfBirth, email, password, personalityType, loveLanguageGiving, loveLanguageRecieving } = req.body;
+        console.log("dob", dateOfBirth);
+        if (name && gender && age && dateOfBirth && email && password && personalityType && loveLanguageGiving && loveLanguageRecieving) {
             try {
                 // Hash password to store it in DB
                 const passwordhash = await bcrypt.hash(password, 10);
                 const user = new User({
                     name,
+                    gender,
+                    age,
+                    dateOfBirth,
                     email,
                     password: passwordhash,
+                    personalityType,
+                    loveLanguageGiving,
+                    loveLanguageRecieving
                 });
 
                 // Create new user

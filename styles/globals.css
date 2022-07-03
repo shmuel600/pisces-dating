@@ -25,12 +25,18 @@ a {
   box-sizing: border-box;
 }
 
-span {
-  overflow: visible !important;
-}
-
 @media (max-width: 600px) {
   body {
     background-position-x: center;
   }
+}
+
+/* FOOTER */
+/* override selected footer button tap effect borders */
+span {
+  overflow: visible !important;
+}
+/* override selected footer button color */
+.css-ecfobp-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+  color: #90caf9;
 }
