@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
-import Context from '../contexts/Context';
 
 const steps = [
     {
@@ -31,7 +30,6 @@ const steps = [
 
 export default function RegisterUser() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const { setRegistered } = React.useContext(Context);
     const router = useRouter();
 
     const handleNext = () => {
@@ -43,7 +41,6 @@ export default function RegisterUser() {
     };
 
     const createProfile = () => {
-        setRegistered(true);
         const dateOfBirth = new Date('1970-12-30T00:00:00');
         dateOfBirth.setDate(18);
         dateOfBirth.setMonth(6);
@@ -82,13 +79,13 @@ export default function RegisterUser() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
         });
-        router.push('profile');
+        router.push('loadUser');
     };
 
     return (
         <Box className={styles.container}>
             <Box className={styles.main}>
-                <Box sx={{ width: 400 }}>
+                <Box sx={{ mx: 20, minWidth: 300, maxWidth: 500 }}>
                     <Stepper activeStep={activeStep} orientation="vertical">
                         {steps.map((step, index) => (
                             <Step key={step.label}>
