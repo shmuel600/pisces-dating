@@ -1,5 +1,6 @@
 .container {
   padding: 0 2rem;
+  transform: scale(1.1);
 }
 
 .main {
@@ -43,6 +44,7 @@
   margin: 0;
   line-height: 1.15;
   font-size: 2rem;
+  transform: scale(1.1);
 }
 
 .title,
@@ -104,11 +106,14 @@
 }
 
 .logo {
+  margin-top: 40px;
   height: 1em;
   margin-left: 0.5rem;
+  transform: scale(1.1);
 }
 
 .btn {
+  transform: scale(1.1);
   position: relative;
   width: 200px;
   font-size: 16px;
@@ -116,6 +121,7 @@
   color: #fff;
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 5px;
   height: 55px;
   text-align:center;
   border: none;
@@ -142,8 +148,8 @@
   border-radius: 50px;
   border: 5px solid transparent;
   background: linear-gradient(to right, #25aae1 15%, #40e495, #30dd8a) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: destination-out;
   mask-composite: exclude;
 }
 
@@ -175,4 +181,14 @@
 .logo {
   transform: scale(5);
   fill: white;
+}
+
+.profileImage {
+  border-radius: 50%;
+  transform: scale(1.5);
+}
+
+.nav {
+  transform: scale(1.1);
+  padding: 5%;
 }

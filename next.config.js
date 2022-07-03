@@ -3,9 +3,12 @@
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     DB_USER, DB_PASS, DB_HOST, DB_NAME
+  },
+  images: {
+    domains: ['/public/userDefault.png'],
   }
 }
 

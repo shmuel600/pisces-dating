@@ -12,6 +12,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import styles from '../styles/Home.module.css';
 // import Settings from '@mui/icons-material/Settings';
 // import SettingsSelected from '@mui/icons-material/SettingsOutlined';
 
@@ -28,6 +29,7 @@ export default function Footer() {
 
     return (
         <BottomNavigation
+            className={styles.nav}
             sx={{
                 position: 'fixed',
                 bottom: 0,
@@ -35,7 +37,7 @@ export default function Footer() {
                 width: '100%',
                 minWidth: '65vh',
                 // backgroundColor: 'rgba(18,18,18,0.6)',
-                background: 'linear-gradient(to top, rgba(18,18,18) 55%, rgba(48,48,48, 0.4) 30%, transparent)'
+                background: 'linear-gradient(to top, rgba(18,18,18) 55%, rgba(53, 64, 60, 0.3) 30%, transparent)'
             }}
             value={page}
             onChange={handleChange}
@@ -45,8 +47,8 @@ export default function Footer() {
                 value="settings"
                 icon={
                     page === "settings" ?
-                        <SettingsSelected sx={{ transform: 'scale(1.7)' }} /> :
-                        <Settings sx={{ transform: 'scale(1.7)' }} />
+                        <SettingsSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
+                        <Settings sx={{ transform: 'scale(1.8)', m: 1 }} />
                 }
                 onClick={() => handleClick('settings')}
             />
@@ -55,8 +57,8 @@ export default function Footer() {
                 value="locations"
                 icon={
                     page === "locations" ?
-                        <LocationsSelected sx={{ transform: 'scale(1.7)' }} /> :
-                        <Locations sx={{ transform: 'scale(1.7)' }} />
+                        <LocationsSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
+                        <Locations sx={{ transform: 'scale(1.8)', m: 1 }} />
                 }
                 onClick={() => handleClick('locations')}
             />
@@ -65,8 +67,8 @@ export default function Footer() {
                 value="dates"
                 icon={
                     page === "dates" ?
-                        <DatesSelected sx={{ transform: 'scale(1.7)' }} /> :
-                        <Dates sx={{ transform: 'scale(1.7)' }} />
+                        <DatesSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
+                        <Dates sx={{ transform: 'scale(1.8)', m: 1 }} />
                 }
                 onClick={() => handleClick('dates')}
             />
@@ -75,8 +77,8 @@ export default function Footer() {
                 value="chat"
                 icon={
                     page === "chat" ?
-                        <ChatSelected sx={{ transform: 'scale(1.7)' }} /> :
-                        <Chat sx={{ transform: 'scale(1.7)' }} />
+                        <ChatSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
+                        <Chat sx={{ transform: 'scale(1.8)', m: 1 }} />
                 }
                 onClick={() => handleClick('chat')}
             // or matched user profile pic
@@ -86,8 +88,8 @@ export default function Footer() {
                 value="profile"
                 icon={
                     page === "profile" ?
-                        <ProfileSelected sx={{ transform: 'scale(1.7)' }} /> :
-                        <Profile sx={{ transform: 'scale(1.7)' }} />
+                        <ProfileSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
+                        <Profile sx={{ transform: 'scale(1.8)', m: 1 }} />
                 }
                 onClick={() => handleClick('profile')}
             // or user profile pic

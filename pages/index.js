@@ -1,8 +1,9 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import Pisces from '../components/Pisces';
 import Context from '../contexts/Context';
+import styles from '../styles/Home.module.css';
 // import Image from 'next/image'
 
 export default function Home() {
@@ -23,9 +24,10 @@ export default function Home() {
         </Head>
         {!registered &&
           <main className={styles.main}>
-            <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
+            {/* <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
               <em>“There are many fish in the sea, but never let a good one swim away.”</em>
-            </h1>
+            </h1> */}
+            <Pisces className={styles.logo} />
             <br />
             <button className={styles.btn} onClick={() => {
               setFader(`${styles.fadeIn} ${styles.fadeOut}`);

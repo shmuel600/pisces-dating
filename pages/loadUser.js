@@ -19,11 +19,6 @@ function LoadUser() {
                 <Pisces className={styles.logo} />
                 <br />
                 <br />
-                <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
-                    <em>Pisces</em>
-                </h1>
-                <br />
-                <br />
                 <br />
                 <Box sx={{ display: 'flex' }} onClick={() => loadProfile()}>
                     <CircularProgress />

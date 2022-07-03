@@ -2,9 +2,15 @@ html,
 body {
   /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/273/920/original/deep-ocean-background-vector.jpg"); */
   /* background-image: url("https://img5.goodfon.com/original/1920x1080/d/90/fon-wallpaper-lines-abstract.jpg"); */
+  background-image: url("../public/Pisces.png");
+  background-size: 110px;
+  background-repeat: space;
   background-blend-mode: soft-light;
-  background-size: cover;
-  background-color: rgb(41, 48, 50);
+  background-position: 50px;
+  /* background-size: cover; */
+  /* background-color: rgb(41, 48, 50); */
+  background-color: rgb(35, 42, 47);
+  background-color: rgba(10, 13, 14, 0.9);
   width: 100%;
   min-width: 65vh;
   min-height: 120vh;
@@ -39,4 +45,16 @@ span {
 /* override selected footer button color */
 .css-ecfobp-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
+}
+
+/* others */
+hr {
+  width: 100%;
+}
+
+textarea {
+  color: white;
+  width: 70%;
+  min-height: 30%;
+  background-color: transparent;
 }
