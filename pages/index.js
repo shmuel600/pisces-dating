@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import Pisces from '../components/Pisces';
@@ -17,11 +16,6 @@ export default function Home() {
   return (
     <div className={fader}>
       <div className={styles.container}>
-        <Head>
-          <title>Pisces Dating</title>
-          <meta name="description" content="Dating app" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
         {!registered &&
           <main className={styles.main}>
             {/* <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
@@ -31,7 +25,7 @@ export default function Home() {
             <br />
             <button className={styles.btn} onClick={() => {
               setFader(`${styles.fadeIn} ${styles.fadeOut}`);
-              setTimeout(registerUser, 500);
+              setTimeout(registerUser, 400);
             }}>New User</button>
             <button className={styles.btn}>New Business</button>
             {/* old code */}

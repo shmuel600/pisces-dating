@@ -4,11 +4,10 @@ import User from '../../models/user';
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
-        console.log("POST");
+        console.log("POST new user");
         // Check if name, email or password is provided
-        const { name, gender, age, dateOfBirth, email, password, personalityType, loveLanguageGiving, loveLanguageRecieving } = req.body;
-        console.log("dob", dateOfBirth);
-        if (name && gender && age && dateOfBirth && email && password && personalityType && loveLanguageGiving && loveLanguageRecieving) {
+        const { name, gender, age, dateOfBirth, email, password, personalityType, loveLanguage, hobbies, likedLocations } = req.body;
+        if (name && gender && age && dateOfBirth && email && password && personalityType && loveLanguage) {
             try {
                 // Hash password to store it in DB
                 const passwordhash = await bcrypt.hash(password, 10);
@@ -20,19 +19,31 @@ const handler = async (req, res) => {
                     email,
                     password: passwordhash,
                     personalityType,
-                    loveLanguageGiving,
-                    loveLanguageRecieving
+                    loveLanguage,
+                    // bio: '',
+                    hobbies,
+                    likedLocations,
                 });
-
                 // Create new user
                 const userCreated = await user.save();
                 return res.status(200).send(userCreated);
-            } catch (error) {
+            }
+            catch (error) {
                 return res.status(500).send(error.message);
             }
         }
         else {
             res.status(422).send('data_incomplete');
+        }
+    }
+    else if (req.method === 'GET') {
+        console.log("GET all users");
+        try {
+            const users = await User.find();
+            return res.status(200).send(users);
+        }
+        catch (error) {
+            return res.status(500).send(error.message);
         }
     }
     else {

@@ -28,72 +28,84 @@ export default function Footer() {
     };
 
     return (
-        <BottomNavigation
-            className={styles.nav}
-            sx={{
-                position: 'fixed',
-                bottom: 0,
-                height: '10%',
-                width: '100%',
-                minWidth: '65vh',
-                // backgroundColor: 'rgba(18,18,18,0.6)',
-                background: 'linear-gradient(to top, rgba(18,18,18) 55%, rgba(53, 64, 60, 0.3) 30%, transparent)'
-            }}
-            value={page}
-            onChange={handleChange}
-        >
-            <BottomNavigationAction
-                label="Settings"
-                value="settings"
-                icon={
-                    page === "settings" ?
-                        <SettingsSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
-                        <Settings sx={{ transform: 'scale(1.8)', m: 1 }} />
-                }
-                onClick={() => handleClick('settings')}
-            />
-            <BottomNavigationAction
-                label="Locations"
-                value="locations"
-                icon={
-                    page === "locations" ?
-                        <LocationsSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
-                        <Locations sx={{ transform: 'scale(1.8)', m: 1 }} />
-                }
-                onClick={() => handleClick('locations')}
-            />
-            <BottomNavigationAction
-                label="Dates"
-                value="dates"
-                icon={
-                    page === "dates" ?
-                        <DatesSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
-                        <Dates sx={{ transform: 'scale(1.8)', m: 1 }} />
-                }
-                onClick={() => handleClick('dates')}
-            />
-            <BottomNavigationAction
-                label="Chat"
-                value="chat"
-                icon={
-                    page === "chat" ?
-                        <ChatSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
-                        <Chat sx={{ transform: 'scale(1.8)', m: 1 }} />
-                }
-                onClick={() => handleClick('chat')}
-            // or matched user profile pic
-            />
-            <BottomNavigationAction
-                label="Profile"
-                value="profile"
-                icon={
-                    page === "profile" ?
-                        <ProfileSelected sx={{ transform: 'scale(1.8)', m: 1 }} /> :
-                        <Profile sx={{ transform: 'scale(1.8)', m: 1 }} />
-                }
-                onClick={() => handleClick('profile')}
-            // or user profile pic
-            />
-        </BottomNavigation>
+        <div className={styles.navResponsive}>
+            <BottomNavigation
+                // className={styles.nav}
+                sx={{
+                    position: 'fixed',
+                    bottom: 0,
+                    height: '10%',
+                    width: '100%',
+                    // minWidth: '65vh',
+                    backgroundColor: 'rgba(18,18,18,0.6)',
+                    background: 'linear-gradient(to top, rgba(08,08,08) 55%, rgba(14, 19, 20, 0.3) 30%, transparent)'
+                }}
+                value={page}
+                onChange={handleChange}
+            >
+                <BottomNavigationAction
+                    className={styles.navBtn}
+                    label="Settings"
+                    value="settings"
+                    sx={{ minWidth: 30 }}
+                    icon={
+                        page === "settings" ?
+                            <SettingsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                            <Settings sx={{ transform: 'scale(1.5)', m: 1 }} />
+                    }
+                    onClick={() => handleClick('settings')}
+                />
+                <BottomNavigationAction
+                    className={styles.navBtn}
+                    label="Locations"
+                    value="locations"
+                    sx={{ minWidth: 30 }}
+                    icon={
+                        page === "locations" ?
+                            <LocationsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                            <Locations sx={{ transform: 'scale(1.5)', m: 1 }} />
+                    }
+                    onClick={() => handleClick('locations')}
+                />
+                <BottomNavigationAction
+                    className={styles.navBtn}
+                    label="Dates"
+                    value="dates"
+                    sx={{ minWidth: 30 }}
+                    icon={
+                        page === "dates" ?
+                            <DatesSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                            <Dates sx={{ transform: 'scale(1.5)', m: 1 }} />
+                    }
+                    onClick={() => handleClick('dates')}
+                />
+                <BottomNavigationAction
+                    className={styles.navBtn}
+                    label="Chat"
+                    value="chat"
+                    sx={{ minWidth: 30 }}
+                    icon={
+                        page === "chat" ?
+                            <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                            <Chat sx={{ transform: 'scale(1.5)', m: 1 }} />
+                    }
+                    onClick={() => handleClick('chat')}
+                // or matched user profile pic
+                />
+                <BottomNavigationAction
+                    className={styles.navBtn}
+                    label="Profile"
+                    value="profile"
+                    sx={{ minWidth: 30 }}
+                    icon={
+                        page === "profile" ?
+                            <ProfileSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                            <Profile sx={{ transform: 'scale(1.5)', m: 1 }} />
+                    }
+                    onClick={() => handleClick('profile')}
+                // or user profile pic
+                />
+            </BottomNavigation>
+        </div>
     );
 }

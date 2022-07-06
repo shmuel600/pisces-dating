@@ -7,11 +7,21 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 function LoadUser() {
-    const { setRegistered } = React.useContext(Context);
+    const { setRegistered, setUser, userId } = React.useContext(Context);
+    React.useEffect(() => { fetchUser() }, []);
+    const fetchUser = () => {
+        fetch(`/api/user/${userId}`)
+            .then(content => content.json())
+            .then(fetchedUser => {
+                setUser(fetchedUser);
+                loadProfile();
+            })
+            .catch(error => console.log(error));
+    };
     const router = useRouter();
-    const loadProfile = () => {
+    const loadProfile = async () => {
+        await router.push('profile');
         setRegistered(true);
-        router.push('profile');
     }
     return (
         <div className={styles.container}>

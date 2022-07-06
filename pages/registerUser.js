@@ -40,16 +40,21 @@ export default function RegisterUser() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const createProfile = () => {
-        const dateOfBirth = new Date('1970-12-30T00:00:00');
-        dateOfBirth.setDate(18);
-        dateOfBirth.setMonth(6);
-        dateOfBirth.setFullYear(1984);
+    const getAge = (dateOfBirth) => {
         const yearDifference = new Date().getUTCFullYear() - new Date(dateOfBirth).getUTCFullYear();
         const currentDate = new Date().getMonth() * 100 + new Date().getDate();
         const birthDate = new Date(dateOfBirth).getMonth() * 100 + new Date(dateOfBirth).getDate();
         const birthdayPassed = currentDate < birthDate ? false : true;
         const age = birthdayPassed ? yearDifference : yearDifference - 1;
+        return age;
+    }
+
+    const createProfile = async () => {
+        const dateOfBirth = new Date('1970-12-30T00:00:00');
+        dateOfBirth.setDate(18);
+        dateOfBirth.setMonth(6);
+        dateOfBirth.setFullYear(1984);
+        const age = getAge(dateOfBirth);
         const user =
         {
             name: "User Name",
@@ -59,26 +64,28 @@ export default function RegisterUser() {
             email: "mail@adress.com",
             password: "password123",
             personalityType: "infj",
-            loveLanguageGiving: {
-                words: 3,
-                acts: 3,
-                gifts: 3,
-                touch: 3,
-                time: 3
+            loveLanguage: {
+                giving: {
+                    words: { title: 'Words', value: 2 },
+                    acts: { title: 'Acts', value: 5 },
+                    touch: { title: 'Touch', value: 4 },
+                    time: { title: 'Time', value: 5 },
+                    gifts: { title: 'Gifts', value: 1 }
+                },
+                recieving: {
+                    words: { title: 'Words', value: 2 },
+                    acts: { title: 'Acts', value: 3 },
+                    touch: { title: 'Touch', value: 1 },
+                    time: { title: 'Time', value: 4 },
+                    gifts: { title: 'Gifts', value: 3 }
+                }
             },
-            loveLanguageRecieving: {
-                words: 2,
-                acts: 2,
-                gifts: 2,
-                touch: 2,
-                time: 2
-            }
         };
-        fetch("/api/user", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user)
-        });
+        // fetch("/api/user", {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(user)
+        // });
         router.push('loadUser');
     };
 

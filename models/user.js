@@ -37,16 +37,21 @@ const user = new Schema({
         type: String,
         required: true
     },
-    loveLanguageGiving: {
-        type: Object,
-        required: true
-    },
-    loveLanguageRecieving: {
-        type: Object,
-        required: true
+    loveLanguage: {
+        giving: {
+            type: Object,
+            required: true
+        },
+        recieving: {
+            type: Object,
+            required: true
+        }
     },
     bio: {
         type: String
+    },
+    hobbies: {
+        type: Array
     },
     likedLocations: {
         type: Array

@@ -1,6 +1,5 @@
 .container {
   padding: 0 2rem;
-  transform: scale(1.1);
 }
 
 .main {
@@ -16,8 +15,7 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  /* border-top: 1px solid #eaeaea; */
+  /* padding: 2rem 0; */
   justify-content: center;
   align-items: center;
 }
@@ -44,7 +42,7 @@
   margin: 0;
   line-height: 1.15;
   font-size: 2rem;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 
 .title,
@@ -53,9 +51,9 @@
 }
 
 .description {
-  margin: 4rem 0;
+  color: darkgray;
   line-height: 1.5;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .code {
@@ -162,8 +160,15 @@
 }
 
 .fadeIn {
+  /* background-image: url("../public/Pisces.png");
+  background-size: 110px;
+  background-repeat: repeat;
+  background-blend-mode: soft-light;
+  background-position: 85px;
+  background-color: rgba(14, 19, 20, 0.99); */
   opacity: 100%;
-  transition:   1s; 
+  transition: 1s; 
+  max-height: 100vh;
 }
 
 .fadeOut {
@@ -186,9 +191,10 @@
 .profileImage {
   border-radius: 50%;
   transform: scale(1.5);
+  margin: 20px;
 }
 
 .nav {
-  transform: scale(1.1);
   padding: 5%;
+  /* border-style: border-box; */
 }
