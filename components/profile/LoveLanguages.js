@@ -17,7 +17,7 @@ export default function LoveLanguages() {
             <Box sx={{ display: 'flex' }}>
                 <Box sx={{ position: 'absolute', left: 0, display: 'flex', flexDirection: 'column', mt: -1, fontSize: 16, mx: 1.5 }}>
                     <label>Give</label>
-                    <LoveLanguageGive sx={{ color: 'gray', width: 30, height: 30, mx: 0.5, mt: -6.5 }} />
+                    <LoveLanguageGive sx={{ color: 'darkgray', width: 30, height: 30, mx: 0.5, mt: -6.5 }} />
                 </Box>
                 <Box sx={{ height: 140, mt: 4, ml: 2 }}>
                     {Object.keys(user.loveLanguage.giving).map((key, index) =>
@@ -43,7 +43,7 @@ export default function LoveLanguages() {
             <Box sx={{ display: 'flex' }}>
                 <Box sx={{ position: 'absolute', left: 0, display: 'flex', flexDirection: 'column', mt: -1, fontSize: 16, mx: 1 }}>
                     <label>Recieve</label>
-                    <LoveLanguageRecieve sx={{ color: 'gray', width: 30, height: 30, mx: 1, mt: -6.5 }} />
+                    <LoveLanguageRecieve sx={{ color: 'darkgray', width: 30, height: 30, mx: 1, mt: -6.5 }} />
                 </Box>
                 <Box sx={{ height: 140, mt: 4, ml: 2 }}>
                     {Object.keys(user.loveLanguage.recieving).map((key, index) =>

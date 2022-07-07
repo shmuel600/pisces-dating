@@ -1,24 +1,19 @@
-import Profile from '@mui/icons-material/AccountCircle';
-import ProfileSelected from '@mui/icons-material/AccountCircleOutlined';
-import Chat from '@mui/icons-material/ChatRounded';
-import ChatSelected from '@mui/icons-material/ChatOutlined';
-import Dates from '@mui/icons-material/Favorite';
-import DatesSelected from '@mui/icons-material/FavoriteBorderRounded';
-import Locations from '@mui/icons-material/LocationOn';
-import LocationsSelected from '@mui/icons-material/LocationOnOutlined';
-import Settings from '@mui/icons-material/MenuRounded';
-import SettingsSelected from '@mui/icons-material/ListRounded';
+import {
+    AccountCircle as Profile, AccountCircleOutlined as ProfileSelected, ChatOutlined as ChatSelected, ChatRounded as Chat,
+    Favorite as Dates, FavoriteBorderRounded as DatesSelected, ListRounded as SettingsSelected, LocationOn as Locations,
+    LocationOnOutlined as LocationsSelected, MenuRounded as Settings
+} from '@mui/icons-material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
-// import Settings from '@mui/icons-material/Settings';
-// import SettingsSelected from '@mui/icons-material/SettingsOutlined';
 
 export default function Footer() {
     const router = useRouter();
     const [page, setPage] = React.useState('profile');
+    const { dark } = React.useContext(Context);
 
     const handleChange = (event, newValue) => {
         setPage(newValue);
@@ -28,18 +23,17 @@ export default function Footer() {
     };
 
     return (
-        <div className={styles.navResponsive}>
+        <div>
             <BottomNavigation
-                // className={styles.nav}
-                sx={{
-                    position: 'fixed',
-                    bottom: 0,
+                className={styles.nav}
+                style={{
                     height: '10%',
                     width: '100%',
                     // minWidth: '65vh',
-                    backgroundColor: 'rgba(18,18,18,0.6)',
-                    background: 'linear-gradient(to top, rgba(08,08,08) 55%, rgba(14, 19, 20, 0.3) 30%, transparent)'
+                    // backgroundColor: 'rgba(18,18,18,0.6)',
+                    zIndex: 2
                 }}
+                sx={dark ? { background: 'linear-gradient(to top, rgb(08,08,08) 100%, rgba(14, 19, 20, 0.3) 30%, transparent)' } : undefined}
                 value={page}
                 onChange={handleChange}
             >

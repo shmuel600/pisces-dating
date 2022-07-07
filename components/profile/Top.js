@@ -27,7 +27,7 @@ export default function Top() {
                 <UploadProfileImage />
             </Fab>
             <Box sx={{ m: 1 }}>
-                <Box className={styles.title} sx={{ color: 'whitesmoke' }}>
+                <Box className={styles.title} sx={{}}>
                     {user.name}
                 </Box>
                 <Box className={styles.description}>

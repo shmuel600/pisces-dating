@@ -7,10 +7,10 @@ import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
 
 export default function Profile() {
-    const { user } = React.useContext(Context);
+    const { dark } = React.useContext(Context);
     return (
-        <div className={styles.container}>
-            <div className={styles.main} style={{ color: 'whitesmoke' }}>
+        <div className={styles.profileContainer}>
+            <div className={styles.profileMain} style={dark ? { color: 'whitesmoke' } : undefined}>
                 <Top />
                 <hr />
                 <About />
@@ -18,6 +18,8 @@ export default function Profile() {
                 <Hobbies />
                 <hr />
                 <LoveLanguages />
+                <br />
+                <br />
             </div>
         </div>
     )

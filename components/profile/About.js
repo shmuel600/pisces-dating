@@ -7,7 +7,7 @@ import Context from '../../contexts/Context';
 import * as React from 'react';
 
 export default function About() {
-    const { user, userId } = React.useContext(Context);
+    const { user, userId, setKeyboardOpen } = React.useContext(Context);
     const updateBio = (value) => {
         user.bio = value;
         fetch(`/api/user/${userId}`, {
@@ -16,13 +16,6 @@ export default function About() {
             body: JSON.stringify({ bio: user.bio })
         });
     }
-    // const [bioEdit, setBioEdit] = React.useState(false);
-    // const bio = React.useRef();
-    // const focusBio = () => {
-    //     setBioEdit(true);
-    //     bio.current.focus();
-    // };
-
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -32,19 +25,18 @@ export default function About() {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ position: 'absolute', left: 0, display: 'flex', flexDirection: 'column', mt: -1, mx: 2 }}>
-                    <Bio sx={{ color: 'gray', width: 30, height: 30, mt: -2.5 }} />
+                    <Bio sx={{ color: 'darkgray', width: 30, height: 30, mt: -2.5 }} />
                 </Box>
                 <Box sx={{ p: 1 }}>
                     <TextArea
-                        // ref={bio}
-                        // disabled={!bioEdit}
-                        onBlur={(e) => updateBio(e.target.value)}
+                        onBlur={(e) => { updateBio(e.target.value); setKeyboardOpen(false) }}
+                        onFocus={() => setKeyboardOpen(true)}
                         sx={{ border: '0px solid transparent' }}
                         minRows={3}
                         maxRows={6}
                         defaultValue={user.bio}
                         placeholder="About me..."
-                        style={{ width: 280, height: 120 }}
+                        style={{ width: 260, height: 120 }}
                     />
                 </Box>
                 {/* <Fab size='small' sx={{ backgroundColor: 'transparent !important', boxShadow: '0', position: 'absolute', right: 0, mx: 2 }}>

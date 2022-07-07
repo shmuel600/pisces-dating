@@ -31,7 +31,7 @@ function LoadUser() {
                 <br />
                 <br />
                 <Box sx={{ display: 'flex' }} onClick={() => loadProfile()}>
-                    <CircularProgress />
+                    <CircularProgress sx={{ color: 'whitesmoke' }} />
                 </Box>
             </div>
         </div>

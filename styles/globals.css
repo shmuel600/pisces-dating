@@ -1,16 +1,19 @@
 html,
 body {
   /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/273/920/original/deep-ocean-background-vector.jpg"); */
-  /* background-image: url("https://img5.goodfon.com/original/1920x1080/d/90/fon-wallpaper-lines-abstract.jpg"); */
   /* background-image: url("../public/Pisces.png"); */
   /* background-size: 110px; */
   /* background-repeat: space; */
-  /* background-blend-mode: soft-light; */
-  /* background-size: cover; */
+  /* background-blend-mode: hue; */
+  background-size: cover;
   /* background-color: rgb(41, 48, 50); */
   /* background-color: rgb(35, 42, 47); */
   /* background-color: rgba(10, 13, 14, 0.9); */
-  background-color: rgba(14, 19, 20, 0.9);
+  /* background-color: rgb(14, 19, 20); */
+  /* background-color: rgb(245,247,251); */
+  /* background-color: rgb(245,247,251); */
+  background-color: rgb(3, 124, 161);
+  background-color: rgb(1, 104, 135);
   /* min-width: 65vh; */
   max-width: 100%;
   min-height: 100%;
@@ -48,7 +51,7 @@ span {
 }
 
 /* override love language slider circle */
-.css-1ti6opd-MuiSlider-thumb {
+.css-1ti6opd-MuiSlider-thumb, .css-eg0mwd-MuiSlider-thumb {
   width: 0px !important;
 }
 
@@ -62,7 +65,7 @@ hr {
 }
 
 textarea {
-  color: white;
+  color: grey;
   /* width: 70%; */
   /* min-height: 30%; */
   background-color: transparent;
@@ -76,14 +79,19 @@ textarea:focus {
   outline: 0;
 }
 
+::placeholder {
+  color: rgb(144,202,249);
+}
+
 label {
-  color: gray;
+  color: darkgray;
   font-size: smaller;
   margin: 0.5rem;
 }
 
-@media (max-width: 370px) {
-  .getSmaller {
-    transform: scale(0.5);
+@media (max-width: 768px) {
+  body {
+    background-position: 1%;
+    background-size: 460%;
   }
 }

@@ -45,15 +45,18 @@ const InputWrapper = styled('div')(
 `,
 );
 const Tag = (props) => {
-  const { user, userId } = React.useContext(Context);
-  const deleteHobby = (label) => {
-    user.hobbies = user.hobbies.filter((hobby) => hobby.title === label ? false : true);
+  const { userId } = React.useContext(Context);
+  const deleteHobby = async (label) => {
+    console.log("removing: ", label);
+    const request = await fetch(`/api/user/${userId}`);
+    const user = await request.json();
+    const newValue = user.hobbies.filter((hobby) => hobby.title !== label);
+    console.log(newValue, "removed");
     fetch(`/api/user/${userId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user.hobbies)
+      body: JSON.stringify({ hobbies: [...newValue] })
     });
-    console.log(user);
   }
   const { label, onDelete, ...other } = props;
   return (
@@ -76,7 +79,7 @@ const StyledTag = styled(Tag)(
   line-height: 22px;
   background-color: ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : '#fafafa'
     };
-  border: 1px solid ${theme.palette.mode === 'dark' ? '#303030' : '#e8e8e8'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? 'darkgray' : '#e8e8e8'};
   border-radius: 2px;
   box-sizing: content-box;
   padding: 0 4px 0 10px;
@@ -149,15 +152,15 @@ const Listbox = styled('ul')(
 );
 
 export default function Hobbies() {
-  const { user, userId } = React.useContext(Context);
+  const { user, userId, setKeyboardOpen } = React.useContext(Context);
   const updateHobbies = () => {
-    user.hobbies = value;
+    // user.hobbies = value;
+    console.log(value, "added");
     fetch(`/api/user/${userId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user.hobbies)
+      body: JSON.stringify({ hobbies: [...value] })
     });
-    console.log(user);
   }
   const {
     getInputProps,
@@ -169,7 +172,7 @@ export default function Hobbies() {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: user.hobbies,
+    defaultValue: [...user.hobbies],
     multiple: true,
     options: hobbiesList,
     getOptionLabel: (option) => option.title,
@@ -183,30 +186,33 @@ export default function Hobbies() {
       </Box>
       <Box sx={{ display: 'flex' }}>
         <Box sx={{ position: 'absolute', left: 0, display: 'flex', flexDirection: 'column', mt: -1, mx: 2 }}>
-          <HobbiesIcon sx={{ color: 'gray', width: 30, height: 30, mt: -3.5 }} />
+          <HobbiesIcon sx={{ color: 'darkgray', width: 30, height: 30, mt: -3.5 }} />
         </Box>
         <Box sx={{ minHeight: 140, p: 3, display: 'flex' }}>
-          <InputWrapper sx={{ width: 330, height: 40, maxHeight: 80, ml: 6, mt: -4, backgroundColor: 'transparent', border: 'none' }} ref={setAnchorEl}>
+          <InputWrapper sx={{ width: 300, height: 40, maxHeight: 80, ml: 6, mt: -2.5, backgroundColor: 'transparent', border: 'none' }} ref={setAnchorEl}>
             {value.map((option, index) => (
               <StyledTag key={option.title} label={option.title} sx={{ fontSize: 11, p: 0, pl: 0.4 }} {...getTagProps({ index })} />
             ))}
             <input {...getInputProps()}
-              onBlur={() => updateHobbies()}
+              onBlur={() => { updateHobbies(); setKeyboardOpen(false); }}
+              onFocus={() => setKeyboardOpen(true)}
               disabled={value.length >= 6}
               style={{ backgroundColor: 'transparent' }}
               placeholder={value.length === 0 ? 'Choose up to 6 hobbies...' : ''}
             />
           </InputWrapper>
-          {groupedOptions.length > 0 ? (
-            <Listbox sx={{ ml: 6, width: 270 }} {...getListboxProps()}>
-              {groupedOptions.map((option, index) => (
-                <li key={option.title} {...getOptionProps({ option, index })}>
-                  <span>{option.title}</span>
-                  <CheckIcon fontSize="small" />
-                </li>
-              ))}
-            </Listbox>
-          ) : null}
+          {groupedOptions.length > 0 ?
+            (
+              <Listbox sx={{ ml: 6, width: 260 }} {...getListboxProps()}>
+                {groupedOptions.map((option, index) => (
+                  <li key={option.title} {...getOptionProps({ option, index })}>
+                    <span>{option.title}</span>
+                    <CheckIcon fontSize="small" />
+                  </li>
+                ))}
+              </Listbox>
+            ) : null
+          }
         </Box>
       </Box>
     </>
