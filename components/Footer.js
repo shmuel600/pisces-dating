@@ -31,9 +31,10 @@ export default function Footer() {
                     width: '100%',
                     // minWidth: '65vh',
                     // backgroundColor: 'rgba(18,18,18,0.6)',
-                    zIndex: 2
+                    zIndex: 999
                 }}
-                sx={dark ? { background: 'linear-gradient(to top, rgb(08,08,08) 100%, rgba(14, 19, 20, 0.3) 30%, transparent)' } : undefined}
+                sx={dark ? { backgroundColor: 'rgb(12, 12, 12)' } : { backgroundColor: '#121212' }}
+                // sx={{ background: 'linear-gradient(to top, rgb(08,08,08) 100%, rgba(14, 19, 20, 0.3) 30%, transparent)' }}
                 value={page}
                 onChange={handleChange}
             >
@@ -41,7 +42,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Settings"
                     value="settings"
-                    sx={{ minWidth: 30 }}
+                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
                     icon={
                         page === "settings" ?
                             <SettingsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -53,7 +54,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Locations"
                     value="locations"
-                    sx={{ minWidth: 30 }}
+                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
                     icon={
                         page === "locations" ?
                             <LocationsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -65,7 +66,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Dates"
                     value="dates"
-                    sx={{ minWidth: 30 }}
+                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
                     icon={
                         page === "dates" ?
                             <DatesSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -77,7 +78,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Chat"
                     value="chat"
-                    sx={{ minWidth: 30 }}
+                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
                     icon={
                         page === "chat" ?
                             <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -90,7 +91,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Profile"
                     value="profile"
-                    sx={{ minWidth: 30 }}
+                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
                     icon={
                         page === "profile" ?
                             <ProfileSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -100,6 +101,6 @@ export default function Footer() {
                 // or user profile pic
                 />
             </BottomNavigation>
-        </div>
+        </div >
     );
 }

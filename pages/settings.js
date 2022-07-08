@@ -10,7 +10,7 @@ export default function Settings() {
         <div className={styles.container}>
             <div className={styles.main} style={{ color: 'darkgray' }}>
                 <Box sx={{ display: 'flex', m: 0, p: 2, width: 180, height: 50 }}>
-                    <Box sx={{ pr: 2, pt: 0.4 }}>{dark ? "Dark" : "Light"} Mode</Box>
+                    <Box sx={{ pr: 2, pt: 0.4 }}>{dark ? "Light" : "Dark"} Mode</Box>
                     <IconButton sx={{ width: 30, height: 30 }} onClick={colorMode.toggleColorMode} color="inherit">
                         {dark ? <Brightness7 /> : <Brightness4 />}
                     </IconButton>

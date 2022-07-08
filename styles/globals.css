@@ -49,10 +49,41 @@ span {
 .css-ecfobp-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
 }
+/* on light mode */
+.css-1in47r4-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+  color: #90caf9;
+}
 
 /* override love language slider circle */
 .css-1ti6opd-MuiSlider-thumb, .css-eg0mwd-MuiSlider-thumb {
   width: 0px !important;
+}
+
+/* override bottom border for hobbies selection */
+.css-7fvbo0-MuiInputBase-root-MuiInput-root:before, 
+.css-1a1fmpi-MuiInputBase-root-MuiInput-root:before,
+.css-1a1fmpi-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before,
+.css-1a1fmpi-MuiInputBase-root-MuiInput-root:after,
+.css-7fvbo0-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 0px solid transparent;
+}
+@media (hover: none) {
+  .css-1a1fmpi-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before,
+  .css-7fvbo0-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before {
+    border-bottom: 0px solid transparent;
+  }
+}
+/* override hobbies placeholder font size */
+.css-7fvbo0-MuiInputBase-root-MuiInput-root,
+.css-1a1fmpi-MuiInputBase-root-MuiInput-root,
+.css-xae5ti-MuiButtonBase-root-MuiChip-root,
+.css-iqd1hh-MuiButtonBase-root-MuiChip-root {
+  font-size: 0.8rem;
+}
+
+/* override hobbies tags margin */
+.css-16awh2u-MuiAutocomplete-root .MuiAutocomplete-tag {
+  margin: 1px;
 }
 
 /* others */

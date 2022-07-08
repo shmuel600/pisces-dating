@@ -21,6 +21,9 @@ export default function Profile() {
                 <br />
                 <br />
             </div>
+            <div className={styles.profileSide}>
+
+            </div>
         </div>
     )
 }

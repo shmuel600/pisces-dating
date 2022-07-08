@@ -7,7 +7,7 @@ import Context from '../../contexts/Context';
 import * as React from 'react';
 
 export default function About() {
-    const { user, userId, setKeyboardOpen } = React.useContext(Context);
+    const { user, userId } = React.useContext(Context);
     const updateBio = (value) => {
         user.bio = value;
         fetch(`/api/user/${userId}`, {
@@ -29,8 +29,6 @@ export default function About() {
                 </Box>
                 <Box sx={{ p: 1 }}>
                     <TextArea
-                        onBlur={(e) => { updateBio(e.target.value); setKeyboardOpen(false) }}
-                        onFocus={() => setKeyboardOpen(true)}
                         sx={{ border: '0px solid transparent' }}
                         minRows={3}
                         maxRows={6}

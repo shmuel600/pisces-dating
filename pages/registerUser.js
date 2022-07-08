@@ -31,15 +31,12 @@ const steps = [
 export default function RegisterUser() {
     const [activeStep, setActiveStep] = React.useState(0);
     const router = useRouter();
-
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
-
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
-
     const getAge = (dateOfBirth) => {
         const yearDifference = new Date().getUTCFullYear() - new Date(dateOfBirth).getUTCFullYear();
         const currentDate = new Date().getMonth() * 100 + new Date().getDate();
@@ -48,7 +45,6 @@ export default function RegisterUser() {
         const age = birthdayPassed ? yearDifference : yearDifference - 1;
         return age;
     }
-
     const createProfile = async () => {
         const dateOfBirth = new Date('1970-12-30T00:00:00');
         dateOfBirth.setDate(18);
@@ -88,7 +84,6 @@ export default function RegisterUser() {
         // });
         router.push('loadUser');
     };
-
     return (
         <Box className={styles.container}>
             <Box className={styles.main}>

@@ -20,7 +20,6 @@ const handler = async (req, res) => {
                     password: passwordhash,
                     personalityType,
                     loveLanguage,
-                    // bio: '',
                     hobbies,
                     likedLocations,
                 });

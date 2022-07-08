@@ -7,8 +7,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 function LoadUser() {
-    const { setRegistered, setUser, userId } = React.useContext(Context);
-    React.useEffect(() => { fetchUser() }, []);
+    const { setRegistered, setUser, userId, wasDark, colorMode } = React.useContext(Context);
+    React.useEffect(() => {
+        fetchUser();
+        if (!wasDark) colorMode.toggleColorMode();
+    }, []);
     const fetchUser = () => {
         fetch(`/api/user/${userId}`)
             .then(content => content.json())

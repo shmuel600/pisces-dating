@@ -15,6 +15,7 @@
 .profileContainer {
   display: flex;
   justify-content: flex-start;
+  margin-top: 10vh;
 }
 
 .profileMain, 
@@ -159,7 +160,7 @@
 
 .btn:hover {
   background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #40e495, #25aae1);
-  background-image: linear-gradient(to left, #25aae1, #40e4e1, #00B3CC, #40e495);
+  background-image: linear-gradient(to right, #25aae1, #00B3CC, #40e4e1, #40dfe4, #25aae1);
   background-position: 100% 0;
   transition: all 0.3s ease-in-out;
 }
@@ -174,7 +175,7 @@
   border-radius: 50px;
   border: 5px solid transparent;
   background: linear-gradient(to right, #25aae1 15%, #40e495, #30dd8a) border-box;
-  background: linear-gradient(to left, #25aae1, #40e4e1, #00B3CC, #40e4c9) border-box;
+  background: linear-gradient(to right, #25aae1, #00B3CC, #40e4e1, #40dfe4, #25aae1) border-box;
   /* background: white border-box; */
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: destination-out;
@@ -183,6 +184,14 @@
 
 .btn:hover::after {
   background-image: none;
+}
+
+.btnLight:hover {
+  color: rgb(3, 124, 161) !important;
+  background: white border-box !important;
+}
+.btnLight::after {
+  background: white border-box !important;
 }
 
 .btn:focus {
@@ -220,7 +229,7 @@
 }
 
 .nav {
-  position: relative;
+  position: fixed;
   bottom: 90%;
 }
 
@@ -241,6 +250,7 @@
   }
   .profileContainer {
     justify-content: center;
+    margin-top: 0;
   }
   .nav {
     position: fixed;
@@ -249,4 +259,24 @@
   .web {
     display: none;
   }
+  .profileSide {
+    height: 0 !important;
+    width: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+.profileSide {
+  height: 100%;
+  width: calc(100% - 400px);
+  visibility: visible;
+  background-color: rgba(128, 128, 128, 0.1);
+  z-index: 5;
+  position: fixed;
+  right: 0
+}
+
+.profileFlex {
+  display: flex;
+  justify-content: flex-start;
 }
