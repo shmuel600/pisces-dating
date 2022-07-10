@@ -6,22 +6,23 @@ const handler = async (req, res) => {
     if (req.method === 'POST') {
         console.log("POST new user");
         // Check if name, email or password is provided
-        const { name, gender, age, dateOfBirth, email, password, personalityType, loveLanguage, hobbies, likedLocations } = req.body;
-        if (name && gender && age && dateOfBirth && email && password && personalityType && loveLanguage) {
+        const { _id, name, gender, findMe, birthday, darkMode, personalityType, loveLanguage } = req.body;
+        console.log("req body: ", _id, name, gender, findMe, birthday, darkMode, personalityType, loveLanguage);
+        if (_id && name && gender && findMe && birthday && personalityType && loveLanguage && typeof (darkMode) === 'boolean') {
             try {
                 // Hash password to store it in DB
-                const passwordhash = await bcrypt.hash(password, 10);
+                // const passwordhash = await bcrypt.hash(password, 10);
                 const user = new User({
+                    _id,
                     name,
+                    birthday,
                     gender,
-                    age,
-                    dateOfBirth,
-                    email,
-                    password: passwordhash,
+                    findMe,
                     personalityType,
                     loveLanguage,
-                    hobbies,
-                    likedLocations,
+                    darkMode
+                    // email,
+                    // password: passwordhash,
                 });
                 // Create new user
                 const userCreated = await user.save();

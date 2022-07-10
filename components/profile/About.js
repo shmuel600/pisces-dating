@@ -7,13 +7,14 @@ import Context from '../../contexts/Context';
 import * as React from 'react';
 
 export default function About() {
-    const { user, userId } = React.useContext(Context);
+    const { user } = React.useContext(Context);
     const updateBio = (value) => {
         user.bio = value;
-        fetch(`/api/user/${userId}`, {
+        console.log(value, "updated");
+        fetch(`/api/user/${user._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ bio: user.bio })
+            body: JSON.stringify({ bio: value })
         });
     }
     return (
@@ -32,6 +33,7 @@ export default function About() {
                         sx={{ border: '0px solid transparent' }}
                         minRows={3}
                         maxRows={6}
+                        onChange={(event) => updateBio(event.target.value)}
                         defaultValue={user.bio}
                         placeholder="About me..."
                         style={{ width: 260, height: 120 }}

@@ -1,12 +1,11 @@
-import Head from 'next/head';
-import Footer from '../components/Footer'
-import '../styles/globals.css'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import * as React from 'react';
-import Context from '../contexts/Context';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from "next-auth/react";
+import Head from 'next/head';
+import * as React from 'react';
+import Navigation from '../components/Navigation';
+import Context from '../contexts/Context';
+import '../styles/globals.css';
 import styles from '../styles/Home.module.css';
-
 
 const darkTheme = createTheme({
   palette: {
@@ -20,19 +19,22 @@ const lightTheme = createTheme({
 });
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  const [dark, setDark] = React.useState(false);
-  const [wasDark, setWasDark] = React.useState(false);
+  const [user, setUser] = React.useState({});
+  const [darkMode, setDarkMode] = React.useState(false);
+  const [inApp, setInApp] = React.useState(false);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setDark(!dark);
+        fetch(`/api/user/${user._id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ darkMode: !darkMode })
+        });
+        setDarkMode(!darkMode);
       },
     }),
-    [dark, setDark],
+    [darkMode, setDarkMode, user._id],
   );
-  const [registered, setRegistered] = React.useState(false);
-  const [user, setUser] = React.useState({});
-  const userId = `62c570cbc3aa5ff2a7e1eb5e`;
   return (
     <>
       <Head>
@@ -41,10 +43,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <link rel="icon" href="/pisces.ico" />
       </Head>
       <SessionProvider session={session}>
-        <ThemeProvider theme={dark ? darkTheme : lightTheme}>
-          <Context.Provider value={{ registered, setRegistered, user, setUser, userId, dark, setDark, colorMode, wasDark, setWasDark }}>
-            <div className={dark ? styles.darkMode : (registered ? styles.lightMode : undefined)}>
-              {registered && <Footer />}
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+          <Context.Provider value={{ user, setUser, darkMode, setDarkMode, colorMode, setInApp }}>
+            <div className={darkMode ? styles.darkMode : (inApp ? styles.lightMode : undefined)}>
+              {inApp && <Navigation />}
               <Component {...pageProps} />
             </div>
           </Context.Provider>

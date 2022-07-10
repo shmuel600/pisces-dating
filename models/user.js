@@ -2,36 +2,25 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const user = new Schema({
+    _id: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
+        required: true
+    },
+    birthday: {
+        type: Date,
         required: true
     },
     gender: {
         type: String,
         required: true
     },
-    age: {
-        type: Number,
-        required: true
-    },
-    dateOfBirth: {
-        type: Date,
-        required: true
-    },
-    email: {
+    findMe: {
         type: String,
         required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    since: {
-        type: Date,
-        default: Date.now
-    },
-    bio: {
-        type: String
     },
     personalityType: {
         type: String,
@@ -55,7 +44,23 @@ const user = new Schema({
     },
     likedLocations: {
         type: Array
+    },
+    darkMode: {
+        type: Boolean,
+        required: true
+    },
+    since: {
+        type: Date,
+        default: Date.now
     }
+    // email: {
+    //     type: String,
+    //     required: true
+    // },
+    // password: {
+    //     type: String,
+    //     required: true
+    // },
 });
 
 mongoose.models = {};

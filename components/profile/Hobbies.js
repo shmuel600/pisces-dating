@@ -7,12 +7,12 @@ import * as React from 'react';
 import Context from '../../contexts/Context';
 
 export default function Tags() {
-    const { user, userId } = React.useContext(Context);
+    const { user } = React.useContext(Context);
     const [valueLength, setValueLength] = React.useState(user.hobbies.length);
     const updateHobbies = async (value) => {
         user.hobbies = value;
         console.log(value, "updated");
-        fetch(`/api/user/${userId}`, {
+        fetch(`/api/user/${user._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ hobbies: value })
@@ -40,7 +40,6 @@ export default function Tags() {
                         forcePopupIcon
                         clearOnBlur
                         autoComplete
-                        // disableCloseOnSelect={valueLength < 5}
                         onChange={(event, value) => {
                             if (value.length === 7) value = value.splice(6, 1);
                             else {

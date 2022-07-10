@@ -45,14 +45,16 @@ a {
 span {
   overflow: visible !important;
 }
+
 /* override selected footer button color */
-.css-ecfobp-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+.css-vbsmoh-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
 }
+
 /* on light mode */
-.css-1in47r4-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+/* .css-7q2x7m-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
-}
+} */
 
 /* override love language slider circle */
 .css-1ti6opd-MuiSlider-thumb, .css-eg0mwd-MuiSlider-thumb {
@@ -65,12 +67,12 @@ span {
 .css-1a1fmpi-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before,
 .css-1a1fmpi-MuiInputBase-root-MuiInput-root:after,
 .css-7fvbo0-MuiInputBase-root-MuiInput-root:after {
-  border-bottom: 0px solid transparent;
+  border-bottom: 0px solid transparent !important;
 }
 @media (hover: none) {
   .css-1a1fmpi-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before,
   .css-7fvbo0-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before {
-    border-bottom: 0px solid transparent;
+    border-bottom: 0px solid transparent !important;
   }
 }
 /* override hobbies placeholder font size */
@@ -78,12 +80,12 @@ span {
 .css-1a1fmpi-MuiInputBase-root-MuiInput-root,
 .css-xae5ti-MuiButtonBase-root-MuiChip-root,
 .css-iqd1hh-MuiButtonBase-root-MuiChip-root {
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 /* override hobbies tags margin */
 .css-16awh2u-MuiAutocomplete-root .MuiAutocomplete-tag {
-  margin: 1px;
+  margin: 1px !important;
 }
 
 /* others */

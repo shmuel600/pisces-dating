@@ -7,10 +7,14 @@ import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
 
 export default function Profile() {
-    const { dark } = React.useContext(Context);
+    const { darkMode, setInApp } = React.useContext(Context);
+    React.useEffect(() => {
+        setInApp(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <div className={styles.profileContainer}>
-            <div className={styles.profileMain} style={dark ? { color: 'whitesmoke' } : undefined}>
+            <div className={styles.profileMain} style={darkMode ? { color: 'whitesmoke' } : undefined}>
                 <Top />
                 <hr />
                 <About />

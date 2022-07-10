@@ -10,16 +10,16 @@ import * as React from 'react';
 import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
 
-export default function Footer() {
+export default function Navigation() {
     const router = useRouter();
     const [page, setPage] = React.useState('profile');
-    const { dark } = React.useContext(Context);
+    const { darkMode } = React.useContext(Context);
 
     const handleChange = (event, newValue) => {
         setPage(newValue);
     };
     const handleClick = (path) => {
-        router.push(path)
+        router.replace(path)
     };
 
     return (
@@ -33,8 +33,8 @@ export default function Footer() {
                     // backgroundColor: 'rgba(18,18,18,0.6)',
                     zIndex: 999
                 }}
-                sx={dark ? { backgroundColor: 'rgb(12, 12, 12)' } : { backgroundColor: '#121212' }}
-                // sx={{ background: 'linear-gradient(to top, rgb(08,08,08) 100%, rgba(14, 19, 20, 0.3) 30%, transparent)' }}
+                // sx={dark ? { backgroundColor: 'rgb(12, 12, 12)' } : { backgroundColor: '#121212' }}
+                sx={darkMode ? { background: 'linear-gradient(to top, rgb(08,08,08) 100%, rgba(14, 19, 20, 0.3) 30%, transparent)' } : undefined}
                 value={page}
                 onChange={handleChange}
             >
@@ -42,7 +42,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Settings"
                     value="settings"
-                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ minWidth: 30 }}
                     icon={
                         page === "settings" ?
                             <SettingsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -54,7 +54,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Locations"
                     value="locations"
-                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ minWidth: 30 }}
                     icon={
                         page === "locations" ?
                             <LocationsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -66,7 +66,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Dates"
                     value="dates"
-                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ minWidth: 30 }}
                     icon={
                         page === "dates" ?
                             <DatesSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -78,7 +78,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Chat"
                     value="chat"
-                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ minWidth: 30 }}
                     icon={
                         page === "chat" ?
                             <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
@@ -91,7 +91,7 @@ export default function Footer() {
                     className={styles.navBtn}
                     label="Profile"
                     value="profile"
-                    sx={{ minWidth: 30, color: 'rgba(255, 255, 255, 0.7)' }}
+                    sx={{ minWidth: 30 }}
                     icon={
                         page === "profile" ?
                             <ProfileSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
