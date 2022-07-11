@@ -104,7 +104,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                 <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={gender === 'Man' ? 'contained' : 'outlined'}
                         onClick={() => setGender('Man')}
                     >
@@ -112,7 +112,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={gender === 'Woman' ? 'contained' : 'outlined'}
                         onClick={() => setGender('Woman')}
                     >
@@ -120,7 +120,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={gender === 'Other' ? 'contained' : 'outlined'}
                         onClick={() => setGender('Other')}
                     >
@@ -134,7 +134,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                 <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={findMe === 'Men' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Men')}
                     >
@@ -142,7 +142,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={findMe === 'Women' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Women')}
                     >
@@ -150,7 +150,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        sx={{ m: 0.5 }}
+                        sx={{ mr: 0.5 }}
                         variant={findMe === 'Everyone' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Everyone')}
                     >
@@ -164,7 +164,12 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                         <Button
                             variant="contained"
                             onClick={handleDone}
-                            disabled={!(checkName && checkAge && gender.length > 0 && findMe.length > 0)}
+                            disabled={!(checkName && checkAge &&
+                                gender.length > 0 && findMe.length > 0 && name.length >= 2 &&
+                                inputDay.length === 2 && inputDay > 0 && inputDay <= 31 &&
+                                inputMonth.length === 2 && inputMonth > 0 && inputMonth <= 12 &&
+                                inputYear.length > 3 && inputYear <= (new Date).getFullYear()
+                            )}
                             sx={{ mt: 1, mr: 1 }}
                         >
                             {'Continue'}
