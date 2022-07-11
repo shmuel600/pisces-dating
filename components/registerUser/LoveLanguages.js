@@ -260,17 +260,17 @@ export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage 
                             variant="contained"
                             onClick={handleDone}
                             disabled={
-                                !(
-                                    givingActs > 0 &&
-                                    recievingActs > 0 &&
-                                    givingGifts > 0 &&
-                                    recievingGifts > 0 &&
-                                    givingTime > 0 &&
-                                    recievingTime > 0 &&
-                                    givingWords > 0 &&
-                                    recievingWords > 0 &&
-                                    givingTouch > 0 &&
-                                    recievingTouch > 0
+                                (
+                                    givingActs === 0 ||
+                                    recievingActs === 0 ||
+                                    givingGifts === 0 ||
+                                    recievingGifts === 0 ||
+                                    givingTime === 0 ||
+                                    recievingTime === 0 ||
+                                    givingWords === 0 ||
+                                    recievingWords === 0 ||
+                                    givingTouch === 0 ||
+                                    recievingTouch === 0
                                 )
                             }
                             sx={{ mt: 1, mr: 1 }}
