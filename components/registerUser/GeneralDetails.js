@@ -8,16 +8,26 @@ import Context from '../../contexts/Context';
 
 export default function GeneralDetails({ handleNext, name, setName, gender, setGender, findMe, setFindMe, setBirthday }) {
     const { darkMode } = React.useContext(Context);
+    const [checkName, setCheckName] = React.useState(true);
+    const [checkAge, setCheckAge] = React.useState(true);
+    const [checkAdult, setCheckAdult] = React.useState(true);
     const [inputDay, setInputDay] = React.useState('');
     const [inputMonth, setInputMonth] = React.useState('');
     const [inputYear, setInputYear] = React.useState('');
     const inputDayRef = React.useRef();
     const inputMonthRef = React.useRef();
     const inputYearRef = React.useRef();
-    const validate = () => {
-        done();
+    const handleCheckAge = () => {
+        setCheckAge(
+            inputDay.length === 2 && inputDay > 0 && inputDay <= 31 &&
+            inputMonth.length === 2 && inputMonth > 0 && inputMonth <= 12 &&
+            inputYear.length > 3 && inputYear <= (new Date).getFullYear()
+        )
+        checkAge && setCheckAdult(
+            inputYear.length > 3 && inputYear <= (new Date).getFullYear() - 18
+        )
     }
-    const done = () => {
+    const handleDone = () => {
         handleNext();
         const dateOfBirth = new Date('1970-12-30T00:00:00');
         dateOfBirth.setDate(inputDay);
@@ -33,7 +43,10 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     First name
                 </Typography>
                 <Box>
-                    <OutlinedInput size='small' placeholder="I am" onChange={(e) => setName(e.target.value)} defaultValue={name} />
+                    <OutlinedInput size='small' placeholder="I am" onChange={(e) => setName(e.target.value)} defaultValue={name}
+                        onBlur={() => setCheckName(name.length >= 2)}
+                    />
+                    {!checkName && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Name should have at least 2 characters'}</Typography>}
                 </Box>
                 <br />
                 <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
@@ -73,63 +86,72 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                         sx={{ width: 80 }}
                         onChange={(e) => {
                             inputYear.length < 4 && setInputYear(e.target.value);
-                            inputYear.length === 3 && inputYearRef.current.blur();
+                            inputYear.length === 4 && inputYearRef.current.blur();
                         }}
                         onKeyDown={(e) => { if (inputYear.length === 0 && e.key === 'Backspace') inputMonthRef.current.focus() }}
                         onFocus={() => setInputYear('')}
+                        onBlur={handleCheckAge}
                         value={inputYear}
                         inputRef={inputYearRef}
                     />
                 </Box>
+                {!checkAge && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Please enter a correct date'}</Typography>}
+                {!checkAdult && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Must be at least 18 to sign up'}</Typography>}
                 <br />
                 <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
                     Gender
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={gender === 'Man' ? 'outlined' : 'contained'}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={gender === 'Man' ? 'contained' : 'outlined'}
                         onClick={() => setGender('Man')}
                     >
                         Man
                     </Button>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={gender === 'Woman' ? 'outlined' : 'contained'}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={gender === 'Woman' ? 'contained' : 'outlined'}
                         onClick={() => setGender('Woman')}
                     >
                         Woman
                     </Button>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={gender === 'More' ? 'outlined' : 'contained'}
-                        onClick={() => setGender('More')}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={gender === 'Other' ? 'contained' : 'outlined'}
+                        onClick={() => setGender('Other')}
                     >
-                        More
+                        Other
                     </Button>
                 </Box>
                 <br />
                 <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
                     Find me
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={findMe === 'Men' ? 'outlined' : 'contained'}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={findMe === 'Men' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Men')}
                     >
                         Men
                     </Button>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={findMe === 'Women' ? 'outlined' : 'contained'}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={findMe === 'Women' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Women')}
                     >
                         Women
                     </Button>
                     <Button
-                        sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
-                        variant={findMe === 'Everyone' ? 'outlined' : 'contained'}
+                        // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
+                        sx={{ m: 0.5 }}
+                        variant={findMe === 'Everyone' ? 'contained' : 'outlined'}
                         onClick={() => setFindMe('Everyone')}
                     >
                         Everyone
@@ -141,7 +163,8 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     <Box>
                         <Button
                             variant="contained"
-                            onClick={validate}
+                            onClick={handleDone}
+                            disabled={!(checkName && checkAge && gender.length > 0 && findMe.length > 0)}
                             sx={{ mt: 1, mr: 1 }}
                         >
                             {'Continue'}

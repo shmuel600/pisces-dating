@@ -17,7 +17,8 @@ export default function Home() {
   }
   const newUser = (type) => {
     // setUserType(type);
-    signIn('google')
+    // signIn('google');
+    userExists();
   }
   return (
     <div className={styles.container}>

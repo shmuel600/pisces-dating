@@ -13,10 +13,10 @@ export default function RegisterUser() {
     const { data: session } = useSession();
     const { darkMode } = React.useContext(Context);
     const [activeStep, setActiveStep] = React.useState(0);
-    const [name, setName] = React.useState();
-    const [gender, setGender] = React.useState();
-    const [findMe, setFindMe] = React.useState();
-    const [birthday, setBirthday] = React.useState();
+    const [name, setName] = React.useState('');
+    const [gender, setGender] = React.useState('');
+    const [findMe, setFindMe] = React.useState('');
+    const [birthday, setBirthday] = React.useState(new Date);
     const [personalityType, setPersonalityType] = React.useState('personality');
     const [loveLanguage, setLoveLanguage] = React.useState({
         giving: {
@@ -43,7 +43,8 @@ export default function RegisterUser() {
     };
     const createProfile = async () => {
         const user = {
-            _id: session.user.email,
+            // _id: session.user.email,
+            _id: 'mail@error.com',
             name,
             gender,
             findMe,

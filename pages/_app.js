@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from "next-auth/react";
 import Head from 'next/head';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Context from '../contexts/Context';
 import '../styles/globals.css';
@@ -22,6 +22,25 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [user, setUser] = React.useState({});
   const [darkMode, setDarkMode] = React.useState(false);
   const [inApp, setInApp] = React.useState(false);
+  const [fullHeight, setFullHeight] = React.useState(null);
+  const [currentHeight, setCurrentHeight] = React.useState(null);
+  const [keyboardOpen, setKeyboardOpen] = React.useState(false);
+  const [isMobile, setisMobile] = React.useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setisMobile(globalThis.innerWidth < 768);
+      setCurrentHeight(globalThis.innerHeight);
+    };
+    setFullHeight(globalThis.innerHeight);
+    globalThis.addEventListener('resize', handleResize);
+    handleResize();
+    return () => globalThis.removeEventListener('resize', handleResize);
+  }, []);
+  // useEffect(() => console.log("screenHeight: ", fullHeight, "currentHeight: ", currentHeight), [fullHeight, currentHeight]);
+  useEffect(() => {
+    if (isMobile) setKeyboardOpen(fullHeight * 0.7 > currentHeight);
+    if (keyboardOpen) console.log("full: ", fullHeight, "current: ", currentHeight, "is mobile: ", isMobile, "keyboardOpen: ", keyboardOpen);
+  }, [isMobile, fullHeight, currentHeight, keyboardOpen]);
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -46,7 +65,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
           <Context.Provider value={{ user, setUser, darkMode, setDarkMode, colorMode, setInApp }}>
             <div className={darkMode ? styles.darkMode : (inApp ? styles.lightMode : undefined)}>
-              {inApp && <Navigation />}
+              {inApp && !keyboardOpen && <Navigation />}
               <Component {...pageProps} />
             </div>
           </Context.Provider>

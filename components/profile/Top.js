@@ -41,7 +41,7 @@ export default function Top() {
                 <Box className={styles.description}>
                     <IconButton color="primary" variant="extended" onClick={handleOpenNavMenu}>
                         <Personality sx={{ width: '20px', height: '20px' }} />
-                        <Box sx={{ fontSize: 'medium' }}>
+                        <Box sx={{ fontSize: 'small' }}>
                             {user.personalityType.toUpperCase()}
                         </Box>
                     </IconButton>
