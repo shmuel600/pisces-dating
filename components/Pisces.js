@@ -14,7 +14,7 @@ const Pisces = (props) => (
         </svg>
         <br />
         <br />
-        <h1 className={styles.title} style={{ color: 'whitesmoke' }}>
+        <h1 className={props?.load ? `${styles.logoTitle} ${styles.skeleton}` : `${styles.logoTitle}`}>
             <em>Pisces</em>
         </h1>
     </div>

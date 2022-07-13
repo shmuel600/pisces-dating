@@ -11,7 +11,7 @@ import * as React from 'react';
 import Context from '../../contexts/Context';
 import HandleLoveLanguage from './LoveLanguages/HandleLoveLanguage';
 
-export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage }) {
+export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage, isRetake = false }) {
     const { darkMode } = React.useContext(Context);
     const [givingActs, setGivingActs] = React.useState(0);
     const [recievingActs, setRecievingActs] = React.useState(0);
@@ -30,8 +30,7 @@ export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage 
         (event, isExpanded) => {
             setExpanded(isExpanded ? panel : false);
         };
-    const handleDone = () => {
-        handleNext();
+    const handleDone = async () => {
         const loveLanguages = {
             giving: {
                 words: {
@@ -78,14 +77,15 @@ export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage 
                 }
             }
         }
-        setLoveLanguage(loveLanguages);
+        await setLoveLanguage(loveLanguages);
+        handleNext();
     }
     return (
         <>
             <StepLabel
             // optional={<Typography variant="caption">Last step</Typography>}
             >
-                {`5 Love languages`}
+                {!isRetake ? `5 Love languages` : ``}
             </StepLabel>
             <StepContent>
                 <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
@@ -209,13 +209,13 @@ export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage 
                                     {`Sometimes you need to hear it`}
                                 </Typography>
                                 <Typography sx={{ fontSize: 'small' }}>
-                                    Hearing the words, "I love you", and the reasons behind that love sends their spirits skyward.
+                                    {`Hearing the words, "I love you", and the reasons behind that love sends their spirits skyward.`}
                                     <br />
-                                    Unsolicited compliments mean the world to them.
+                                    {`Unsolicited compliments mean the world to them.`}
                                     <br />
-                                    Kind, encouraging, and positive words are truly life-giving.
+                                    {`Kind, encouraging, and positive words are truly life-giving.`}
                                     <br />
-                                    Insults can leave them shattered and are not easily forgotten.
+                                    {`Insults can leave them shattered and are not easily forgotten.`}
                                 </Typography>
                             </Box>
                             <br />
@@ -275,13 +275,13 @@ export default function LoveLanguages({ handleNext, handleBack, setLoveLanguage 
                             }
                             sx={{ mt: 1, mr: 1 }}
                         >
-                            {'Continue'}
+                            {!isRetake ? `Continue` : `Save`}
                         </Button>
                         <Button
                             onClick={handleBack}
                             sx={{ mt: 1, mr: 1 }}
                         >
-                            Back
+                            {!isRetake ? `Back` : `Cancel Edit`}
                         </Button>
                     </Box>
                 </Box>

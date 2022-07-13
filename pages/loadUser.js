@@ -16,7 +16,7 @@ function LoadUser() {
     }, []);
     const fetchUser = () => {
         // fetch(`/api/user/${session.user.email}`)
-        fetch(`/api/user/${'mail@error.com'}`)
+        fetch(`/api/user/${'dev@sketch.com'}`)
             .then(content => content.json())
             .then(fetchedUser => {
                 setUser(fetchedUser);
@@ -27,15 +27,15 @@ function LoadUser() {
         // .catch(error => console.log(error));
     };
     return (
-        <Box className={styles.container} sx={{ color: 'whitesmoke !important', backgroundColor: 'rgb(1, 104, 135) !important' }}>
+        <Box className={styles.container}>
             <div className={styles.main}>
-                <Pisces className={styles.logo} />
+                <Pisces className={`${styles.logo} ${styles.skeleton}`} load={"load"} />
                 <br />
                 <br />
                 <br />
-                <Box sx={{ display: 'flex' }}>
+                {/* <Box sx={{ display: 'flex' }}>
                     <CircularProgress sx={{ color: 'whitesmoke' }} />
-                </Box>
+                </Box> */}
             </div>
         </Box>
     )

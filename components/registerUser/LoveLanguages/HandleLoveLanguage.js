@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 export default function HandleLoveLanguage({ type, state, setState }) {
     return (
         <>
-            <Typography sx={{ mt: 2, color: 'text.secondary', fontSize: 18 }}>
+            <Typography sx={{ mt: 2, color: 'text.secondary', fontSize: 16 }}>
                 {type === 'need' ? 'How much do you need this from others?' : 'How much do you give this back?'}
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', maxWidth: 300 }}>

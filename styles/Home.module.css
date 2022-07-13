@@ -34,32 +34,7 @@
   max-width: 300px;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  /* padding: 2rem 0; */
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
+.logoTitle,
 .title {
   margin: 0;
   line-height: 1.15;
@@ -67,6 +42,7 @@
   /* transform: scale(1.1); */
 }
 
+.logoTitle,
 .title,
 .description {
   text-align: center;
@@ -125,14 +101,33 @@
   line-height: 1.5;
 }
 
+.logoTitle {
+  color: white;
+}
+
 .logo {
   margin-top: 40px;
   height: 1em;
   margin-left: 0.5rem;
-  /* transform: scale(1.1); */
   transform: scale(5.5);
   fill: white;
-  /* fill: #25aae1; */
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    /* fill: rgb(245, 249, 251);
+    color: rgb(245, 249, 251); */
+    fill: white;
+    color: white;
+  }
+  100% {
+    fill: rgb(141, 162, 173);
+    color: rgb(141, 162, 173);
+  }
 }
 
 .btn {
@@ -188,7 +183,7 @@
 }
 
 .btnLight:hover {
-  color: rgb(3, 124, 161) !important;
+  color: rgb(11, 148, 190) !important;
   background: white border-box !important;
 }
 .btnLight::after {
@@ -215,6 +210,7 @@
 .nav {
   position: fixed;
   bottom: 90%;
+  box-shadow: 0px 0px 10px 0px rgba(42, 42, 42, 0.1);
 }
 
 .web {

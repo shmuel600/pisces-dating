@@ -1,7 +1,14 @@
 import {
-    AccountCircle as Profile, AccountCircleOutlined as ProfileSelected, ChatOutlined as ChatSelected, ChatRounded as Chat,
-    Favorite as Dates, FavoriteBorderRounded as DatesSelected, ListRounded as SettingsSelected, LocationOn as Locations,
-    LocationOnOutlined as LocationsSelected, MenuRounded as Settings
+    // AccountCircle as Profile, AccountCircleOutlined as ProfileSelected,
+    PersonRounded as Profile, PersonOutlineRounded as ProfileSelected,
+    // ChatRounded as Chat, ChatOutlined as ChatSelected,
+    QuestionAnswerRounded as Chat, QuestionAnswerOutlined as ChatSelected,
+    Favorite as Dates, FavoriteBorderRounded as DatesSelected,
+    MenuRounded as Settings,
+    // ListRounded as SettingsSelected,
+    FormatListBulletedRounded as SettingsSelected,
+    // MenuOpenRounded as SettingsSelected,
+    LocationOn as Locations, LocationOnOutlined as LocationsSelected
 } from '@mui/icons-material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -40,7 +47,7 @@ export default function Navigation() {
             >
                 <BottomNavigationAction
                     className={styles.navBtn}
-                    label="Settings"
+                    // label="Settings"
                     value="settings"
                     sx={{ minWidth: 30 }}
                     icon={
@@ -52,7 +59,7 @@ export default function Navigation() {
                 />
                 <BottomNavigationAction
                     className={styles.navBtn}
-                    label="Locations"
+                    // label="Locations"
                     value="locations"
                     sx={{ minWidth: 30 }}
                     icon={
@@ -64,7 +71,7 @@ export default function Navigation() {
                 />
                 <BottomNavigationAction
                     className={styles.navBtn}
-                    label="Dates"
+                    // label="Dates"
                     value="dates"
                     sx={{ minWidth: 30 }}
                     icon={
@@ -76,7 +83,7 @@ export default function Navigation() {
                 />
                 <BottomNavigationAction
                     className={styles.navBtn}
-                    label="Chat"
+                    // label="Chat"
                     value="chat"
                     sx={{ minWidth: 30 }}
                     icon={
@@ -89,7 +96,7 @@ export default function Navigation() {
                 />
                 <BottomNavigationAction
                     className={styles.navBtn}
-                    label="Profile"
+                    // label="Profile"
                     value="profile"
                     sx={{ minWidth: 30 }}
                     icon={

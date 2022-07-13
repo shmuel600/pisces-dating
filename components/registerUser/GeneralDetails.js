@@ -24,7 +24,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
             inputYear.length > 3 && inputYear <= (new Date).getFullYear()
         )
         checkAge && setCheckAdult(
-            inputYear.length > 3 && inputYear <= (new Date).getFullYear() - 18
+            inputYear.length > 3 && inputYear <= (new Date).getFullYear() - 16
         )
     }
     const handleDone = () => {
@@ -96,7 +96,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     />
                 </Box>
                 {!checkAge && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Please enter a correct date'}</Typography>}
-                {!checkAdult && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Must be at least 18 to sign up'}</Typography>}
+                {!checkAdult && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Must be at least 16 to sign up'}</Typography>}
                 <br />
                 <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
                     Gender
@@ -168,7 +168,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                                 gender.length > 0 && findMe.length > 0 && name.length >= 2 &&
                                 inputDay.length === 2 && inputDay > 0 && inputDay <= 31 &&
                                 inputMonth.length === 2 && inputMonth > 0 && inputMonth <= 12 &&
-                                inputYear.length > 3 && inputYear <= (new Date).getFullYear()
+                                inputYear.length > 3 && inputYear <= ((new Date).getFullYear() - 16)
                             )}
                             sx={{ mt: 1, mr: 1 }}
                         >

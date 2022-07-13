@@ -1,20 +1,9 @@
 html,
 body {
-  /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/273/920/original/deep-ocean-background-vector.jpg"); */
-  /* background-image: url("../public/Pisces.png"); */
-  /* background-size: 110px; */
-  /* background-repeat: space; */
-  /* background-blend-mode: hue; */
   background-size: cover;
-  /* background-color: rgb(41, 48, 50); */
-  /* background-color: rgb(35, 42, 47); */
-  /* background-color: rgba(10, 13, 14, 0.9); */
-  /* background-color: rgb(14, 19, 20); */
-  /* background-color: rgb(245,247,251); */
-  /* background-color: rgb(245,247,251); */
-  background-color: rgb(3, 124, 161);
-  background-color: rgb(1, 104, 135);
-  /* min-width: 65vh; */
+  /* background-color: rgb(1, 104, 135); */
+  /* background: linear-gradient(45deg, rgb(110, 215, 247), rgb(11, 148, 190), rgb(1, 104, 135), rgb(2, 65, 84)); */
+  background: linear-gradient(45deg, rgb(86, 192, 224), rgb(11, 148, 190), rgb(1, 104, 135), rgb(6, 88, 113));
   max-width: 100%;
   min-height: 100%;
   overflow-y: scroll;
