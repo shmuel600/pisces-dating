@@ -1,5 +1,5 @@
 import {
-    EditRounded as Edit, InterestsOutlined as LoveLanguageRecieve,
+    EditRounded as Edit, InterestsRounded as LoveLanguageRecieve,
     QuizRounded as RetakeTest, VolunteerActivismRounded as LoveLanguageGive
 } from '@mui/icons-material';
 import { Box, IconButton, Slider, Step, Stepper } from '@mui/material';
@@ -29,7 +29,7 @@ export default function LoveLanguages() {
                 </Box>
                 {!retakeTest &&
                     < IconButton sx={{ ml: 5.5, mr: -10.5, mt: -1, mb: -1 }} onClick={() => setRetakeTest(true)}>
-                        <Edit sx={{ color: 'rgb(144,202,249)' }} />
+                        <Edit color="primary" />
                     </IconButton>
                 }
             </Box>

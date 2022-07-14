@@ -1,4 +1,4 @@
-import Bio from '@mui/icons-material/InfoOutlined';
+import Bio from '@mui/icons-material/InfoRounded';
 import TextArea from '@mui/material/TextareaAutosize';
 import { Box } from '@mui/material';
 import Context from '../../contexts/Context';
@@ -36,6 +36,7 @@ export default function About() {
                         onChange={(event) => updateBio(event.target.value)}
                         defaultValue={user.bio}
                         placeholder="About me..."
+                        spellCheck="false"
                         style={{ width: 260, height: 120 }}
                     />
                 </Box>

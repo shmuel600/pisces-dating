@@ -9,7 +9,6 @@ import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import * as React from 'react';
 import Context from '../../contexts/Context';
-import userDefault from '../../public/userDefault.png';
 import styles from '../../styles/Home.module.css';
 
 const Input = styled('input')({
@@ -19,6 +18,7 @@ const Input = styled('input')({
 export default function Top() {
     const { user } = React.useContext(Context);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [profileImage, setProfileImage] = React.useState();
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -33,13 +33,26 @@ export default function Top() {
         const age = birthdayPassed ? yearDifference : yearDifference - 1;
         return age;
     }
-    const uploadProfilePic = React.useRef();
-    const handleUpload = () => uploadProfilePic.current.click();
+    const profilePicInputRef = React.useRef();
+    const uploadProfileImage = (file) => {
+        user.profileImage = profileImage;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setProfileImage(reader.result);
+            fetch(`api/profile`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: reader.result, id: user._id })
+            })
+                .then(url => console.log("url", url));
+        };
+    }
     return (
         <>
-            <Image className={styles.profileImage} src={userDefault} alt='profile image' width={100} height={100} />
-            <Fab color="primary" aria-label="add" size='medium' sx={{ mr: '100px', mt: '-20px' }} onClick={handleUpload}>
-                <Input accept="image/*" ref={uploadProfilePic} multiple type="file" onChange={(e) => console.log(e.target.value)} />
+            <Image className={styles.profileImage} src={user.profileImage} alt='profile image' width={100} height={100} />
+            <Fab color="primary" aria-label="add" size='medium' sx={{ mr: '100px', mt: '-20px', zIndex: 1 }} onClick={() => profilePicInputRef.current.click()}>
+                <Input accept="image/*" ref={profilePicInputRef} multiple type="file" onChange={(e) => uploadProfileImage(e.target.files[0])} />
                 <UploadProfileImage />
             </Fab>
             <Box sx={{ m: 1 }}>
@@ -65,12 +78,12 @@ export default function Top() {
                 anchorEl={anchorElNav}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}

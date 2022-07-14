@@ -7,14 +7,16 @@ const nextConfig = {
   env: {
     DB_USER, DB_PASS, DB_HOST, DB_NAME
   },
-  images: {
-    domains: ['/public/userDefault.png'],
-  }
 }
 
 // module.exports = nextConfig
 module.exports = {
   devIndicators: {
     buildActivity: false
+  },
+  images: {
+    domains: [
+      'res.cloudinary.com'
+    ],
   }
 }

@@ -52,6 +52,17 @@ const user = new Schema({
     since: {
         type: Date,
         default: Date.now
+    },
+    matchedWith: {
+        type: String,
+        default: 'No match found'
+    },
+    chatBackground: {
+        type: String
+    },
+    profileImage: {
+        type: String,
+        required: true
     }
     // email: {
     //     type: String,

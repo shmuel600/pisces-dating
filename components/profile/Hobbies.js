@@ -1,4 +1,4 @@
-import HobbiesIcon from '@mui/icons-material/SentimentVerySatisfiedOutlined';
+import HobbiesIcon from '@mui/icons-material/TagFacesRounded';
 import { Box } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';

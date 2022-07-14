@@ -1,4 +1,4 @@
-import { Box, Button, Stepper, Step } from '@mui/material';
+import { Box, Button, Stepper, Step, StepLabel, Typography, StepContent } from '@mui/material';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -17,7 +17,7 @@ export default function RegisterUser() {
     const [gender, setGender] = React.useState('');
     const [findMe, setFindMe] = React.useState('');
     const [birthday, setBirthday] = React.useState(new Date);
-    const [personalityType, setPersonalityType] = React.useState('xxxx');
+    const [personalityType, setPersonalityType] = React.useState('pnlt');
     const [loveLanguage, setLoveLanguage] = React.useState({
         giving: {
             words: { title: 'Words', value: 3 },
@@ -34,7 +34,6 @@ export default function RegisterUser() {
             gifts: { title: 'Gifts', value: 3 }
         }
     });
-
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -42,6 +41,8 @@ export default function RegisterUser() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
     const createProfile = async () => {
+        const chatBackground = "https://res.cloudinary.com/pisces/image/upload/v1657797207/chatDefault.png";
+        const profileImage = "https://res.cloudinary.com/pisces/image/upload/v1657804688/profileDefault.png";
         const user = {
             // _id: session.user.email,
             _id: 'dev@sketch.com',
@@ -51,7 +52,9 @@ export default function RegisterUser() {
             birthday,
             darkMode,
             personalityType,
-            loveLanguage
+            loveLanguage,
+            profileImage,
+            chatBackground
         };
         await fetch("/api/user", {
             method: 'POST',
@@ -78,20 +81,26 @@ export default function RegisterUser() {
                             />
                         </Step>
                         <Step>
-                            <Personalities handleNext={handleNext} handleBack={handleBack}
-                                setPersonalityType={setPersonalityType}
-                            />
+                            {/* <Personalities handleNext={handleNext} handleBack={handleBack}
+                            /> */}
+                            <StepLabel
+                                optional={<Typography variant="caption">Last step</Typography>}
+                            >
+                                {`Create Profile`}
+                            </StepLabel>
+                            <StepContent>
+                                <Button
+                                    variant="contained"
+                                    onClick={createProfile}
+                                    sx={{ mt: 1, mr: 1 }}
+                                >
+                                    Create Profile
+                                </Button>
+                            </StepContent>
                         </Step>
                     </Stepper>
-                    {activeStep === 3 && (
-                        <Button
-                            variant="contained"
-                            onClick={createProfile}
-                            sx={{ mt: 1, mr: 1 }}
-                        >
-                            Create Profile
-                        </Button>
-                    )}
+                    {/* {activeStep === 3 && (   
+                    )} */}
                 </Box>
             </Box>
         </Box>

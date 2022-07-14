@@ -1,5 +1,7 @@
 html,
 body {
+  /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/273/920/original/deep-ocean-background-vector.jpg"); */
+
   background-size: cover;
   /* background-color: rgb(1, 104, 135); */
   /* background: linear-gradient(45deg, rgb(110, 215, 247), rgb(11, 148, 190), rgb(1, 104, 135), rgb(2, 65, 84)); */
@@ -36,13 +38,15 @@ span {
 }
 
 /* override selected footer button color */
-.css-vbsmoh-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+/* .css-vbsmoh-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
-}
+  color: rgb(86, 192, 224);
+} */
 
 /* on light mode */
 /* .css-7q2x7m-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
+  color: rgb(86, 192, 224);
 } */
 
 /* override love language slider circle */
@@ -87,6 +91,9 @@ hr {
 }
 
 textarea {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: medium;
   color: grey;
   /* width: 70%; */
   /* min-height: 30%; */
@@ -102,7 +109,9 @@ textarea:focus {
 }
 
 ::placeholder {
-  color: rgb(144,202,249);
+  /* color: rgb(144,202,249); */
+  color: #a9a9a9;
+  color: #c8cad0;
 }
 
 label {

@@ -25,10 +25,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [fullHeight, setFullHeight] = React.useState(null);
   const [currentHeight, setCurrentHeight] = React.useState(null);
   const [keyboardOpen, setKeyboardOpen] = React.useState(false);
-  const [isMobile, setisMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
   useEffect(() => {
     const handleResize = () => {
-      setisMobile(globalThis.innerWidth < 768);
+      setIsMobile(globalThis.innerWidth < 768);
       setCurrentHeight(globalThis.innerHeight);
     };
     setFullHeight(globalThis.innerHeight);
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // useEffect(() => console.log("screenHeight: ", fullHeight, "currentHeight: ", currentHeight), [fullHeight, currentHeight]);
   useEffect(() => {
     if (isMobile) setKeyboardOpen(fullHeight * 0.7 > currentHeight);
-    if (keyboardOpen) console.log("full: ", fullHeight, "current: ", currentHeight, "is mobile: ", isMobile, "keyboardOpen: ", keyboardOpen);
+    // if (keyboardOpen) console.log("full: ", fullHeight, "current: ", currentHeight, "is mobile: ", isMobile, "keyboardOpen: ", keyboardOpen);
   }, [isMobile, fullHeight, currentHeight, keyboardOpen]);
   const colorMode = React.useMemo(
     () => ({
@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       </Head>
       <SessionProvider session={session}>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-          <Context.Provider value={{ user, setUser, darkMode, setDarkMode, colorMode, setInApp }}>
+          <Context.Provider value={{ user, setUser, darkMode, setDarkMode, colorMode, setInApp, isMobile, keyboardOpen, fullHeight, currentHeight }}>
             <div className={darkMode ? styles.darkMode : (inApp ? styles.lightMode : undefined)}>
               {inApp && !keyboardOpen && <Navigation />}
               <Component {...pageProps} />

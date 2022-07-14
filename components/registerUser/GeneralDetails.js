@@ -54,6 +54,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                 </Typography>
                 <Box>
                     <OutlinedInput
+                        // type='number'
                         placeholder="DD"
                         size='small'
                         sx={{ width: 55 }}
@@ -67,6 +68,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     />
                     <span style={{ color: 'darkgray' }}> / </span>
                     <OutlinedInput
+                        // type='number'
                         placeholder="MM"
                         size='small'
                         sx={{ width: 55 }}
@@ -81,6 +83,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     />
                     <span style={{ color: 'darkgray' }}> / </span>
                     <OutlinedInput
+                        // type='number'
                         placeholder="YYYY"
                         size='small'
                         sx={{ width: 80 }}

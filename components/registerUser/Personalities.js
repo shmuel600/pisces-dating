@@ -17,7 +17,7 @@ export default function Personalities({ handleNext, handleBack }) {
                 {`16 Personalities`}
             </StepLabel>
             <StepContent>
-                <Typography style={darkMode ? { color: 'whitesmoke' } : undefined}>
+                <Typography className={darkMode ? styles.registerTextDark : undefined}>
                     {`Here will be a link to the 16 personalities test (myers-briggs type indicator / MBTI).`}
                 </Typography>
                 <Box sx={{ mb: 2 }}>

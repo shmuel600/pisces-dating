@@ -51,9 +51,9 @@ export default function Navigation() {
                     value="settings"
                     sx={{ minWidth: 30 }}
                     icon={
-                        page === "settings" ?
-                            <SettingsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
-                            <Settings sx={{ transform: 'scale(1.5)', m: 1 }} />
+                        // page === "settings" ?
+                        //     <SettingsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                        <Settings sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
                     onClick={() => handleClick('settings')}
                 />
@@ -63,9 +63,9 @@ export default function Navigation() {
                     value="locations"
                     sx={{ minWidth: 30 }}
                     icon={
-                        page === "locations" ?
-                            <LocationsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
-                            <Locations sx={{ transform: 'scale(1.5)', m: 1 }} />
+                        // page === "locations" ?
+                        //     <LocationsSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                        <Locations sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
                     onClick={() => handleClick('locations')}
                 />
@@ -75,9 +75,9 @@ export default function Navigation() {
                     value="dates"
                     sx={{ minWidth: 30 }}
                     icon={
-                        page === "dates" ?
-                            <DatesSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
-                            <Dates sx={{ transform: 'scale(1.5)', m: 1 }} />
+                        // page === "dates" ?
+                        //     <DatesSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                        <Dates sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
                     onClick={() => handleClick('dates')}
                 />
@@ -87,9 +87,9 @@ export default function Navigation() {
                     value="chat"
                     sx={{ minWidth: 30 }}
                     icon={
-                        page === "chat" ?
-                            <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
-                            <Chat sx={{ transform: 'scale(1.5)', m: 1 }} />
+                        // page === "chat" ?
+                        //     <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                        <Chat sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
                     onClick={() => handleClick('chat')}
                 // or matched user profile pic
@@ -100,9 +100,9 @@ export default function Navigation() {
                     value="profile"
                     sx={{ minWidth: 30 }}
                     icon={
-                        page === "profile" ?
-                            <ProfileSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
-                            <Profile sx={{ transform: 'scale(1.5)', m: 1 }} />
+                        // page === "profile" ?
+                        //     <ProfileSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
+                        <Profile sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
                     onClick={() => handleClick('profile')}
                 // or user profile pic
