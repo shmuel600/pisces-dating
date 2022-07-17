@@ -8,11 +8,13 @@ const chat = new Schema({
         required: true
     },
     user1: {
-        type: User,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     user2: {
-        type: User,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     messages: {

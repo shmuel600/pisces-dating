@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Chat from './chat';
 const Schema = mongoose.Schema;
 
 const user = new Schema({
@@ -53,9 +54,9 @@ const user = new Schema({
         type: Date,
         default: Date.now
     },
-    matchedWith: {
-        type: String,
-        default: 'No match found'
+    chat: {
+        type: Schema.Types.ObjectId,
+        ref: 'Chat'
     },
     chatBackground: {
         type: String
