@@ -44,8 +44,8 @@ export default function RegisterUser() {
         const chatBackground = "https://res.cloudinary.com/pisces/image/upload/v1657797207/chatDefault.png";
         const profileImage = "https://res.cloudinary.com/pisces/image/upload/v1657804688/profileDefault.png";
         const user = {
-            // _id: session.user.email,
-            _id: 'dev@sketch.com',
+            _id: session.user.email,
+            // _id: 'dev@sketch.com',
             name,
             gender,
             findMe,

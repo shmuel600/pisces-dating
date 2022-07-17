@@ -18,7 +18,10 @@ const Input = styled('input')({
 export default function Top() {
     const { user } = React.useContext(Context);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [profileImage, setProfileImage] = React.useState();
+    const [profileImage, setProfileImage] = React.useState(user.profileImage);
+    const profilePicInputRef = React.useRef();
+    user.profileImage = profileImage;
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -33,21 +36,19 @@ export default function Top() {
         const age = birthdayPassed ? yearDifference : yearDifference - 1;
         return age;
     }
-    const profilePicInputRef = React.useRef();
     const uploadProfileImage = (file) => {
-        user.profileImage = profileImage;
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
             setProfileImage(reader.result);
-            fetch(`api/profile`, {
+            fetch(`api/user/profile`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ data: reader.result, id: user._id })
             })
-                .then(url => console.log("url", url));
         };
     }
+
     return (
         <>
             <Image className={styles.profileImage} src={user.profileImage} alt='profile image' width={100} height={100} />

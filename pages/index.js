@@ -17,20 +17,21 @@ export default function Home() {
   }
   const newUser = (type) => {
     // setUserType(type);
-    // signIn('google');
-    userExists();
+    signIn('google');
+    // userExists();
   }
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {session?.user && userExists()}
+        {session?.user?.email && userExists()}
         {!session &&
           <>
             <Pisces className={styles.logo} />
             <br />
-            <button className={darkMode ? `${styles.btn}` : `${styles.btn} ${styles.btnLight}`} onClick={() => {
-              newUser('user')
-            }}>
+            <button
+              className={darkMode ? `${styles.btn}` : `${styles.btn} ${styles.btnLight}`}
+              onClick={() => { newUser('user') }}
+            >
               New User
             </button>
             <button className={darkMode ? `${styles.btn}` : `${styles.btn} ${styles.btnLight}`}>

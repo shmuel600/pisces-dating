@@ -31,7 +31,7 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
         handleNext();
         const dateOfBirth = new Date('1970-12-30T00:00:00');
         dateOfBirth.setDate(inputDay);
-        dateOfBirth.setMonth(inputMonth);
+        dateOfBirth.setMonth(inputMonth - 1);
         dateOfBirth.setFullYear(inputYear);
         setBirthday(dateOfBirth);
     }

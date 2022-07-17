@@ -22,7 +22,9 @@
     "next": "12.2.0",
     "next-auth": "^4.9.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
     "eslint": "8.18.0",

@@ -15,8 +15,9 @@ function LoadUser() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const fetchUser = () => {
-        // fetch(`/api/user/${session.user.email}`)
-        fetch(`/api/user/${'dev@sketch.com'}`)
+        console.log(session.user);
+        fetch(`/api/user/${session.user.email}`)
+            // fetch(`/api/user/${'dev@sketch.com'}`)
             .then(content => content.json())
             .then(fetchedUser => {
                 setUser(fetchedUser);

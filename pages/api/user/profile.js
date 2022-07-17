@@ -1,6 +1,6 @@
-import connectDB from '../../middleware/mongodb';
-import User from '../../models/user';
-import { cloudinary } from './utils';
+import connectDB from '../../../middleware/mongodb';
+import User from '../../../models/user';
+import { cloudinary } from '../utils';
 
 export const config = {
     api: {

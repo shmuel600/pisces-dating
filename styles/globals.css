@@ -38,10 +38,10 @@ span {
 }
 
 /* override selected footer button color */
-/* .css-vbsmoh-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+.css-vbsmoh-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
   color: #90caf9;
-  color: rgb(86, 192, 224);
-} */
+  color: rgb(50, 156, 188);
+}
 
 /* on light mode */
 /* .css-7q2x7m-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
@@ -126,3 +126,11 @@ label {
     background-size: 460%;
   }
 }
+
+/* ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+} */
