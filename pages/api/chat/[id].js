@@ -23,6 +23,7 @@ const SocketHandler = async (req, res) => {
         console.log("GET chat history");
         try {
             const history = await Chat.findById(id);
+            console.log(history);
             return res.status(200).send(history);
         }
         catch (error) {

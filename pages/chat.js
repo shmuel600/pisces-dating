@@ -8,6 +8,8 @@ import { IconButton, Paper, TextareaAutosize } from '@mui/material';
 import Image from 'next/image';
 import userDefault from '../public/userDefault.png';
 import io from 'Socket.IO-client';
+import DoneIcon from '@mui/icons-material/Done';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 let socket;
 
 function Chat() {
@@ -15,6 +17,8 @@ function Chat() {
     const bottomPosition = isMobile ? (keyboardOpen ? '0%' : '10%') : '0%';
     const topPosition = !isMobile ? '11.5%' : '0%';
     const messagesPageBottom = React.useRef();
+    // const onScreen = useOnScreen(messagesPageBottom, "-300px");
+    // console.log("is it viewed? ", onScreen);
     // isMobile && console.log("mobile");
     // keyboardOpen && console.log("keyboard open");
     const [messages, setMessages] = React.useState([{}]);
@@ -23,17 +27,17 @@ function Chat() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const socketInitializer = async () => {
-        await fetch('/api/chat/1');
+        await fetch(`/api/chat/1`);
         socket = io();
         socket.on('connect', () => {
             console.log('connected');
         })
         socket.on('update-input', msg => {
             setMessages(msg);
-            messagesPageBottom.current?.scrollIntoView({ behavior: "smooth" });
+            scrollToBottom();
         })
     }
-    const onChangeHandler = (message) => {
+    const onChangeHandler = async (message) => {
         console.log("got message: ", message);
         const today = new Date();
         const send = [...messages, {
@@ -43,7 +47,10 @@ function Chat() {
             sent: (today.getHours() + ":" + today.getMinutes())
         }];
         setMessages(send);
-        socket.emit('input-change', send);
+        await socket.emit('input-change', send);
+        scrollToBottom();
+    }
+    const scrollToBottom = () => {
         messagesPageBottom.current?.scrollIntoView({ behavior: "smooth" });
     }
     return (
@@ -55,7 +62,7 @@ function Chat() {
             <div className={styles.main} style={{ color: 'whitesmoke' }}>
                 {/* input */}
                 <div style={{
-                    position: 'fixed', bottom: `${bottomPosition}`, width: '100%', height: 70, transform: 'scale(1.01)',
+                    position: 'fixed', bottom: `${bottomPosition}`, width: '100%', height: 70, transform: 'scale(1.025)',
                     display: 'flex', justifyContent: 'center', padding: 5, paddingRight: 15, paddingTop: 5,
                     backgroundImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent, transparent)'
                 }}>
@@ -64,7 +71,7 @@ function Chat() {
                 {/* messages */}
                 <Paper
                     sx={{ background: 'transparent', boxShadow: 'none', overflowY: 'auto', overflowX: 'hidden' }}
-                    style={{ width: '100%', maxWidth: '1000px', height: `${currentHeight * (isMobile ? '0.68' : '0.78')}px`, top: '11%', position: 'absolute' }}
+                    style={{ width: '98%', height: `${currentHeight * (isMobile ? '0.68' : '0.78')}px`, top: '11%', position: 'absolute' }}
                 >
                     {messages.map((message, index) =>
                         <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
@@ -75,12 +82,14 @@ function Chat() {
                                             {
                                                 height: 'fit-content',
                                                 // minHeight: '50',
-                                                maxWidth: '80%',
+                                                // maxWidth: `${isMobile ? '80%' : '100%'}`,
+                                                // width: '80px',
                                                 padding: 8,
                                                 margin: 5,
                                                 marginLeft: '2%',
                                                 marginBottom: 10,
-                                                background: `${darkMode ? '#329cbc' : 'rgb(25, 118, 210)'}`,
+                                                background: `rgb(25, 118, 210)`,
+                                                // background: `${darkMode ? '#329cbc' : 'rgb(25, 118, 210)'}`,
                                                 color: 'white',
                                                 borderRadius: 15,
                                                 alignSelf: 'flex-start'
@@ -89,7 +98,8 @@ function Chat() {
                                             {
                                                 height: 'fit-content',
                                                 // minHeight: '50',
-                                                maxWidth: '80%',
+                                                // maxWidth: '90%',
+                                                width: 'inherit',
                                                 padding: 8,
                                                 margin: 5,
                                                 marginRight: '2%',
@@ -101,13 +111,29 @@ function Chat() {
                                             }
                                     }>
                                     <TextareaAutosize
-                                        style={{ color: 'white' }}
+                                        style={{
+                                            color: 'white',
+                                            minWidth: '60px',
+                                            maxWidth: '90%',
+                                            width: `${isMobile ?
+                                                (message.text.length < 26 ? ((message.text.length * 10) + 20) : 260) :
+                                                (message.text.length < 90 ? message.text.length * 10 : 600)
+                                                }px`,
+                                            padding: 1
+                                        }}
                                         disabled
                                         value={message.text}
                                     />
                                     {/* {message.sentBy}: {message.text} */}
+                                    {console.log(message.text.length)}
                                     <br />
-                                    <span style={{ color: 'lightgray', fontSize: 12 }}>{message.sent}</span>
+                                    <span style={{ color: 'lightgray', fontSize: 12 }}>
+                                        {message.senderId === user._id &&
+                                            // <DoneAllIcon sx={{ mb: -0.5, mx: 0.5, fontSize: 16, color: 'darkgray' }} />
+                                            <DoneIcon sx={{ mb: -0.5, mx: 0.5, fontSize: 16, color: 'darkgray' }} />
+                                        }
+                                        {message.sent}
+                                    </span>
                                 </div>
                             }
                             <span ref={messagesPageBottom}></span>
@@ -128,6 +154,7 @@ function Chat() {
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                                 paddingRight: 20,
+                                // transform: 'scale(1.025)',
                                 zIndex: 6
                             }
                             :

@@ -13,7 +13,9 @@ export default function ChatInput({ onSend }) {
   }
   return (
     <div style={{ display: 'flex', width: '100%' }}>
-      <Fab variant='circular' color="primary" aria-label="add" size='medium' sx={{ mx: '2%', minWidth: '50px', minHeight: '50px', color: 'white' }} >
+      <Fab variant='circular' color="primary" aria-label="add" size='medium'
+        sx={{ mx: '2%', minWidth: '50px', minHeight: '50px', color: 'white', background: `rgb(25, 118, 210)` }}
+      >
         <SendIcon onClick={() => { input.length > 0 && handleSend() }} />
       </Fab>
       <Paper
