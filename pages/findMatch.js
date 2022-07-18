@@ -1,13 +1,13 @@
 import styles from '../styles/Home.module.css';
 
-function Locations() {
+function FindMatch() {
     return (
         <div className={styles.container}>
             <div className={styles.main}>
-                Locations
+                FindMatch
             </div>
         </div>
     )
 }
 
-export default Locations;
+export default FindMatch;

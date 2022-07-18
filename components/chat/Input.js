@@ -5,7 +5,7 @@ import PhotoCameraRoundedIcon from '@mui/icons-material/PhotoCameraRounded';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import { Fab, Paper, InputBase, IconButton, Box } from '@mui/material';
 
-export default function ChatInput({ onSend }) {
+export default function Input({ onSend }) {
   const [input, setInput] = React.useState('');
   const handleSend = () => {
     onSend(input);

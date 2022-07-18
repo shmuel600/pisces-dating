@@ -91,7 +91,8 @@ export default function Navigation() {
                         //     <ChatSelected sx={{ transform: 'scale(1.5)', m: 1 }} /> :
                         <Chat sx={{ transform: 'scale(1.5)', m: 1 }} />
                     }
-                    onClick={() => handleClick('chat')}
+                    onClick={() => handleClick('findMatch')}
+                // onClick={() => handleClick('chat')}
                 // or matched user profile pic
                 />
                 <BottomNavigationAction
