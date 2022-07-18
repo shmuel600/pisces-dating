@@ -20,13 +20,16 @@ const lightTheme = createTheme({
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [user, setUser] = React.useState({});
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [darkMode, setDarkMode] = React.useState(null);
   const [inApp, setInApp] = React.useState(false);
   const [fullHeight, setFullHeight] = React.useState(null);
   const [currentHeight, setCurrentHeight] = React.useState(null);
   const [keyboardOpen, setKeyboardOpen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+
   useEffect(() => {
+    const theme = JSON.parse(localStorage.getItem('darkMode'));
+    if (theme) setDarkMode(JSON.parse(localStorage.getItem('darkMode')));
     const handleResize = () => {
       setIsMobile(globalThis.innerWidth < 768);
       setCurrentHeight(globalThis.innerHeight);
@@ -36,11 +39,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     handleResize();
     return () => globalThis.removeEventListener('resize', handleResize);
   }, []);
-  // useEffect(() => console.log("screenHeight: ", fullHeight, "currentHeight: ", currentHeight), [fullHeight, currentHeight]);
+
   useEffect(() => {
     if (isMobile) setKeyboardOpen(fullHeight * 0.7 > currentHeight);
-    // if (keyboardOpen) console.log("full: ", fullHeight, "current: ", currentHeight, "is mobile: ", isMobile, "keyboardOpen: ", keyboardOpen);
   }, [isMobile, fullHeight, currentHeight, keyboardOpen]);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    console.log("theme saved to local storage. dark mode: ", darkMode);
+  }, [darkMode]);
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -54,6 +62,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     }),
     [darkMode, setDarkMode, user._id],
   );
+
   return (
     <>
       <Head>

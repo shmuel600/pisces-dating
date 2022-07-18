@@ -15,7 +15,7 @@ export default function RegisterUser() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [name, setName] = React.useState('');
     const [gender, setGender] = React.useState('');
-    const [findMe, setFindMe] = React.useState('');
+    const [findMeGender, setFindMeGender] = React.useState('');
     const [birthday, setBirthday] = React.useState(new Date);
     const [personalityType, setPersonalityType] = React.useState('pnlt');
     const [loveLanguage, setLoveLanguage] = React.useState({
@@ -40,17 +40,27 @@ export default function RegisterUser() {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+    const getAge = (birthDay) => {
+        const yearDifference = new Date().getUTCFullYear() - new Date(birthDay).getUTCFullYear();
+        const currentDate = new Date().getMonth() * 100 + new Date().getDate();
+        const birthDate = new Date(birthDay).getMonth() * 100 + new Date(birthDay).getDate();
+        const birthdayPassed = currentDate < birthDate ? false : true;
+        const age = birthdayPassed ? yearDifference : yearDifference - 1;
+        return age;
+    };
     const createProfile = async () => {
         const chatBackground = "https://res.cloudinary.com/pisces/image/upload/v1657797207/chatDefault.png";
         const profileImage = "https://res.cloudinary.com/pisces/image/upload/v1657804688/profileDefault.png";
         const user = {
             _id: session.user.email,
-            // _id: 'dev@sketch.com',
             name,
             gender,
-            findMe,
+            findMe: {
+                gender: findMeGender,
+                age: [(getAge(birthday) - 4) > 18 ? (getAge(birthday) - 4) : 18, getAge(birthday) + 4]
+            },
             birthday,
-            darkMode,
+            // darkMode,
             personalityType,
             loveLanguage,
             profileImage,
@@ -71,8 +81,8 @@ export default function RegisterUser() {
                     <Stepper activeStep={activeStep} orientation="vertical">
                         <Step>
                             <GeneralDetails handleNext={handleNext}
-                                name={name} gender={gender} findMe={findMe} birthday={birthday}
-                                setName={setName} setGender={setGender} setFindMe={setFindMe} setBirthday={setBirthday}
+                                name={name} gender={gender} findMe={findMeGender} birthday={birthday}
+                                setName={setName} setGender={setGender} setFindMe={setFindMeGender} setBirthday={setBirthday}
                             />
                         </Step>
                         <Step>

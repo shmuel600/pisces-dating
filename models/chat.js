@@ -1,22 +1,7 @@
 import mongoose from 'mongoose';
-import User from './user';
 const Schema = mongoose.Schema;
 
 const chat = new Schema({
-    _id: {
-        type: String,
-        required: true
-    },
-    user1: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    user2: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
     messages: {
         type: Array,
     },

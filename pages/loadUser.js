@@ -8,23 +8,36 @@ import styles from '../styles/Home.module.css';
 
 function LoadUser() {
     const { data: session } = useSession();
-    const { setUser, setDarkMode } = React.useContext(Context);
+    const { setUser } = React.useContext(Context);
     const router = useRouter();
     React.useEffect(() => {
-        fetchUser();
+        session && fetchUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const fetchUser = () => {
-        console.log(session.user);
-        fetch(`/api/user/${session.user.email}`)
-            // fetch(`/api/user/${'dev@sketch.com'}`)
-            .then(content => content.json())
-            .then(fetchedUser => {
-                setUser(fetchedUser);
-                setDarkMode(fetchedUser.darkMode);
-                router.replace('profile');
-            })
-            .catch(error => router.push('registerUser'));
+    const fetchUser = async () => {
+        console.log("fetch user");
+        try {
+            const content = await fetch(`/api/user/${session.user.email}`)
+            const fetchedUser = await content.json();
+            await setUser(fetchedUser);
+            router.replace('profile');
+        }
+        catch (error) {
+            // console.log(error);
+            router.replace('registerUser');
+        }
+
+        // fetch(`/api/user/${'dev@sketch.com'}`)
+
+        // fetch(`/api/user/${session.user.email}`)
+        //     .then(content => content.json())
+        //     .then(fetchedUser => {
+        //         setUser(fetchedUser);
+        //         setDarkMode(fetchedUser.darkMode);
+        //         router.replace('profile');
+        //     })
+        //     .catch(error => router.replace('registerUser'));
+
         // .catch(error => console.log(error));
     };
     return (

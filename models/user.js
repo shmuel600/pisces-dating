@@ -20,8 +20,8 @@ const user = new Schema({
         required: true
     },
     findMe: {
-        type: String,
-        required: true
+        gender: { type: String, required: true },
+        age: { type: Array, required: true }
     },
     personalityType: {
         type: String,
@@ -46,17 +46,22 @@ const user = new Schema({
     likedLocations: {
         type: Array
     },
-    darkMode: {
-        type: Boolean,
-        required: true
-    },
+    // darkMode: {
+    //     type: Boolean,
+    //     required: true
+    // },
     since: {
         type: Date,
         default: Date.now
     },
     chat: {
         type: Schema.Types.ObjectId,
-        ref: 'Chat'
+        ref: Chat,
+        default: null
+    },
+    matchedUser: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
     chatBackground: {
         type: String

@@ -35,7 +35,18 @@ const SocketHandler = async (req, res) => {
             console.log("PATCH chat history");
             console.log("to update: ", req.body);
             const history = await Chat.findByIdAndUpdate(id, req.body);
+            console.log("chat history: ", history);
             return res.status(200).send(history);
+        }
+        catch (error) {
+            return res.status(500).send(error.message);
+        }
+    }
+    else if (req.method === 'DELETE') {
+        try {
+            console.log("DELETE chat");
+            const chat = await Chat.findByIdAndDelete(id);
+            return res.status(200).send(chat);
         }
         catch (error) {
             return res.status(500).send(error.message);

@@ -108,18 +108,18 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
                         sx={{ mr: 0.5 }}
-                        variant={gender === 'Man' ? 'contained' : 'outlined'}
-                        onClick={() => setGender('Man')}
+                        variant={gender === 'Male' ? 'contained' : 'outlined'}
+                        onClick={() => setGender('Male')}
                     >
-                        Man
+                        Male
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
                         sx={{ mr: 0.5 }}
-                        variant={gender === 'Woman' ? 'contained' : 'outlined'}
-                        onClick={() => setGender('Woman')}
+                        variant={gender === 'Female' ? 'contained' : 'outlined'}
+                        onClick={() => setGender('Female')}
                     >
-                        Woman
+                        Female
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
@@ -138,18 +138,18 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
                         sx={{ mr: 0.5 }}
-                        variant={findMe === 'Men' ? 'contained' : 'outlined'}
-                        onClick={() => setFindMe('Men')}
+                        variant={findMe === 'Male' ? 'contained' : 'outlined'}
+                        onClick={() => setFindMe('Male')}
                     >
-                        Men
+                        Male
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}
                         sx={{ mr: 0.5 }}
-                        variant={findMe === 'Women' ? 'contained' : 'outlined'}
-                        onClick={() => setFindMe('Women')}
+                        variant={findMe === 'Female' ? 'contained' : 'outlined'}
+                        onClick={() => setFindMe('Female')}
                     >
-                        Women
+                        Female
                     </Button>
                     <Button
                         // sx={{ backgroundColor: 'transparent', color: '#1976d2', boxShadow: 'none' }}

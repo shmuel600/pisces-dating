@@ -13,7 +13,7 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 let socket;
 
 function Chat() {
-    const { user, isMobile, keyboardOpen, fullHeight, currentHeight, darkMode } = React.useContext(Context);
+    const { user, isMobile, keyboardOpen, fullHeight, currentHeight } = React.useContext(Context);
     const bottomPosition = isMobile ? (keyboardOpen ? '0%' : '10%') : '0%';
     const topPosition = !isMobile ? '11.5%' : '0%';
     const messagesPageBottom = React.useRef();
@@ -21,13 +21,32 @@ function Chat() {
     // console.log("is it viewed? ", onScreen);
     // isMobile && console.log("mobile");
     // keyboardOpen && console.log("keyboard open");
-    const [messages, setMessages] = React.useState([{}]);
+    const previousMessages = user.chat?.messages === undefined ? [] : user.chat.messages;
+    const [messages, setMessages] = React.useState(previousMessages);
+    console.log("messages?", messages);
     React.useEffect(() => {
-        socketInitializer()
+        // console.log("use effect");
+        user.chat === null ? createChat() : socketInitializer();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    const createChat = async () => {
+        console.log("create chat");
+        const chat = await fetch("/api/chat", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: user._id })
+        }).catch((error) => console.log(error));
+        socketInitializer();
+        // console.log("id:", chat._id);
+        // fetch(`/api/user/${user._id}`, {
+        //     method: 'PATCH',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ chat: chat._id })
+        // }).catch((error) => console.log(error))
+    }
     const socketInitializer = async () => {
-        await fetch(`/api/chat/1`);
+        console.log("initialize chat");
+        // await fetch(`/api/chat/${user.chat._id}`);
         socket = io();
         socket.on('connect', () => {
             console.log('connected');
@@ -53,7 +72,13 @@ function Chat() {
             sentOn
         }];
         setMessages(send);
+        // console.log("user chat: ", user.chat?._id);
         await socket.emit('input-change', send);
+        await fetch(`/api/chat/${user.chat._id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: send })
+        })
         scrollToBottom();
     }
     const scrollToBottom = () => {

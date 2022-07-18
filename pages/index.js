@@ -23,8 +23,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {session?.user?.email && userExists()}
-        {!session &&
+        {session ? userExists() : (!loading &&
           <>
             <Pisces className={styles.logo} />
             <br />
@@ -44,7 +43,7 @@ export default function Home() {
               </IconButton>
             </Box>
           </>
-        }
+        )}
       </main>
     </div>
   )

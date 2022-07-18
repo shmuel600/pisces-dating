@@ -28,10 +28,10 @@ export default function Top() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-    const getAge = (Birthday) => {
-        const yearDifference = new Date().getUTCFullYear() - new Date(Birthday).getUTCFullYear();
+    const getAge = (birthDay) => {
+        const yearDifference = new Date().getUTCFullYear() - new Date(birthDay).getUTCFullYear();
         const currentDate = new Date().getMonth() * 100 + new Date().getDate();
-        const birthDate = new Date(Birthday).getMonth() * 100 + new Date(Birthday).getDate();
+        const birthDate = new Date(birthDay).getMonth() * 100 + new Date(birthDay).getDate();
         const birthdayPassed = currentDate < birthDate ? false : true;
         const age = birthdayPassed ? yearDifference : yearDifference - 1;
         return age;
