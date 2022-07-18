@@ -1,5 +1,5 @@
-import connectDB from '../../middleware/mongodb';
-import Chat from '../../models/chat';
+import connectDB from '../../../../middleware/mongodb';
+import Chat from '../../../../models/chat';
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {

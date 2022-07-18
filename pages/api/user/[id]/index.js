@@ -1,5 +1,5 @@
-import connectDB from '../../../middleware/mongodb';
-import User from '../../../models/user';
+import connectDB from '../../../../middleware/mongodb';
+import User from '../../../../models/user';
 
 const handler = async (req, res) => {
     const { id } = req.query;

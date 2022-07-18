@@ -39,12 +39,18 @@ function Chat() {
     }
     const onChangeHandler = async (message) => {
         console.log("got message: ", message);
-        const today = new Date();
+        const sentOn = new Date().toLocaleTimeString('en-US',
+            {
+                hour12: false,
+                hour: "numeric",
+                minute: "numeric"
+            });
         const send = [...messages, {
             text: message,
             sentBy: user.name,
             senderId: user._id,
-            sent: (today.getHours() + ":" + today.getMinutes())
+            // sentOn: (today.getHours() + ":" + today.getMinutes())
+            sentOn
         }];
         setMessages(send);
         await socket.emit('input-change', send);
@@ -125,14 +131,13 @@ function Chat() {
                                         value={message.text}
                                     />
                                     {/* {message.sentBy}: {message.text} */}
-                                    {console.log(message.text.length)}
                                     <br />
                                     <span style={{ color: 'lightgray', fontSize: 12 }}>
                                         {message.senderId === user._id &&
                                             // <DoneAllIcon sx={{ mb: -0.5, mx: 0.5, fontSize: 16, color: 'darkgray' }} />
                                             <DoneIcon sx={{ mb: -0.5, mx: 0.5, fontSize: 16, color: 'darkgray' }} />
                                         }
-                                        {message.sent}
+                                        {message.sentOn}
                                     </span>
                                 </div>
                             }

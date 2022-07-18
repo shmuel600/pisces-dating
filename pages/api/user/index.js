@@ -1,5 +1,5 @@
-import connectDB from '../../middleware/mongodb';
-import User from '../../models/user';
+import connectDB from '../../../middleware/mongodb';
+import User from '../../../models/user';
 // import bcrypt from 'bcrypt';
 
 const handler = async (req, res) => {
