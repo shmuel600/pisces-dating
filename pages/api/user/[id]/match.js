@@ -16,15 +16,12 @@ const handler = async (req, res) => {
         try {
             console.log("PATCH match users");
             const firstUser = await User.findById(id);
-            //find users filtered by:
-            //gender />0/ age />0/ location />0/ -- not found
-            //get match% by love languages and DONT sort by best one (exploitable)
-            // firstUser.gender(man, woman, other)
-            // firstUser.findMe.gender(men, women, everyone)
-            // firstUser.findMe.age(min - max)
-            // firstUser.birthday(getAge(firstUser.birthday));
-            // const matchedUser = //return id of matched user
-            const users = await User.find();
+
+            //start filters
+            const users = (await User.find()).filter((otherUser) => {
+                otherUser.matchedUser === null;
+            });
+            //check if one user (return) or more (continue), if none found return "no user found"
             const genderFilter = users.filter((otherUser) => {
                 if (firstUser.findMe.gender === "Everyone") {
                     if (otherUser.findMe.gender === "Everyone") return true;
@@ -37,10 +34,24 @@ const handler = async (req, res) => {
                     else return false;
                 }
             });
-            // const matchedUser = 
-            console.log("matched with: ", matchedUser._id);
-            const user = await User.findByIdAndUpdate(id, { matchedUser });
-            return res.status(200).send(user);
+            //check if one user (return) or more (continue), if none found return one from "users"
+            const ageFilter = genderFilter.filter((otherUser) => {
+                if (firstUser.findMe.age[0] > getAge(otherUser.birthday)) return false;
+                else if (firstUser.findMe.age[1] < getAge(otherUser.birthday)) return false;
+                else return true;
+            });
+            //check if one user (return) or more (continue), if none found return one from "gender filter"
+
+            //add location filter here
+            //check if one user (return) or more (continue), if none found return one from "age filter"
+
+            // handle repeated matches
+            // prioritize nearby users
+
+            // const matchedUser = return id of matched user (x._id)
+            // console.log("matched with: ", matchedUser);
+            // const user = await User.findByIdAndUpdate(id, { matchedUser });
+            // return res.status(200).send(user);
         }
         catch (error) {
             return res.status(500).send(error.message);

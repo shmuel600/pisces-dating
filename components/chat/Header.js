@@ -1,9 +1,11 @@
 import { Extension, MoreVert } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import Image from 'next/image';
-import userDefault from '../public/userDefault.png';
+import styles from '../../styles/Home.module.css';
+import userDefault from '../../public/userDefault.png';
 
-export default function Header() {
+export default function Header({ isMobile }) {
+    const topPosition = !isMobile ? '11.5%' : '0%';
     return (
         <div
             style={

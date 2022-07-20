@@ -61,7 +61,8 @@ const user = new Schema({
     },
     matchedUser: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        default: null
     },
     chatBackground: {
         type: String

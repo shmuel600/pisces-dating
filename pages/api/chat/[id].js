@@ -12,6 +12,7 @@ const SocketHandler = async (req, res) => {
 
         io.on('connection', socket => {
             socket.on('input-change', msg => {
+                console.log("ELAD-SERVER", msg);
                 socket.broadcast.emit('update-input', msg);
             });
         });

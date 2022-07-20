@@ -10,7 +10,6 @@ let socket;
 function Chat() {
     const { user, isMobile, keyboardOpen, fullHeight, currentHeight } = React.useContext(Context);
     const bottomPosition = isMobile ? (keyboardOpen ? '0%' : '10%') : '0%';
-    const topPosition = !isMobile ? '11.5%' : '0%';
     const messagesPageBottom = React.useRef();
     // const onScreen = useOnScreen(messagesPageBottom, "-300px");
     // console.log("is it viewed? ", onScreen);
@@ -43,10 +42,12 @@ function Chat() {
         console.log("initialize chat");
         // await fetch(`/api/chat/${user.chat._id}`);
         socket = io();
+        // console.log(io);
         socket.on('connect', () => {
             console.log('connected');
         })
         socket.on('update-input', msg => {
+            console.log("ELAD-CLIENT", msg);
             setMessages(msg);
             scrollToBottom();
         })
@@ -68,6 +69,7 @@ function Chat() {
         }];
         setMessages(send);
         // console.log("user chat: ", user.chat?._id);
+
         await socket.emit('input-change', send);
         await fetch(`/api/chat/${user.chat._id}`, {
             method: 'PATCH',
@@ -105,9 +107,9 @@ function Chat() {
                     <Input onSend={onChangeHandler} />
                 </div>
                 {/* messages */}
-                <Messages messages={messages} />
+                <Messages user={user} messages={messages} currentHeight={currentHeight} isMobile={isMobile} messagesPageBottom={messagesPageBottom} />
                 {/* header */}
-                <Header />
+                <Header isMobile={isMobile} />
             </div>
         </div >
     )
