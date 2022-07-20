@@ -32,11 +32,11 @@ function Chat() {
         }).catch((error) => console.log(error));
         socketInitializer();
         // console.log("id:", chat._id);
-        // fetch(`/api/user/${user._id}`, {
-        //     method: 'PATCH',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ chat: chat._id })
-        // }).catch((error) => console.log(error))
+        fetch(`/api/user/${user._id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat: chat._id })
+        }).catch((error) => console.log(error))
     }
     const socketInitializer = async () => {
         console.log("initialize chat");

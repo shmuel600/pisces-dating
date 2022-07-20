@@ -3,6 +3,7 @@ import connectDB from '../../../middleware/mongodb';
 import Chat from '../../../models/chat';
 
 const SocketHandler = async (req, res) => {
+
     if (res.socket.server.io) {
         console.log('Socket is already running');
     } else {
@@ -12,6 +13,7 @@ const SocketHandler = async (req, res) => {
 
         io.on('connection', socket => {
             socket.on('input-change', msg => {
+                console.log('SERVER - no msg');
                 console.log("ELAD-SERVER", msg);
                 socket.broadcast.emit('update-input', msg);
             });
