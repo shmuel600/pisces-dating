@@ -6,7 +6,7 @@ import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
 
 export default function Settings() {
-    const { darkMode, colorMode } = React.useContext(Context);
+    const { darkMode, colorMode, mute, setMute } = React.useContext(Context);
     const handleSignOut = () => signOut({ callbackUrl: 'http://localhost:3000' });
     return (
         <div className={styles.container}>
@@ -18,6 +18,7 @@ export default function Settings() {
                     </IconButton>
                 </Box>
                 here will also be chat background image setting
+                <button onClick={() => setMute(!mute)}>{`Chat Message Sound ${mute ? 'off' : 'on'}`}</button>
                 <button onClick={handleSignOut}>Sign Out</button>
             </div>
         </div>

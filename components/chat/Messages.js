@@ -6,7 +6,7 @@ export default function Messages({ user, messages, currentHeight, isMobile, mess
     return (
         <Paper
             sx={{ background: 'transparent', boxShadow: 'none', overflowY: 'auto', overflowX: 'hidden' }}
-            style={{ width: '98%', height: `${currentHeight * (isMobile ? '0.68' : '0.78')}px`, top: '11%', position: 'absolute' }}
+            style={{ width: '98%', height: `${currentHeight * (isMobile ? '0.67' : '0.78')}px`, top: '11%', position: 'absolute' }}
         >
             {messages.map((message, index) =>
                 <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>

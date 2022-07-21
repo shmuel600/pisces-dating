@@ -26,10 +26,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [currentHeight, setCurrentHeight] = React.useState(null);
   const [keyboardOpen, setKeyboardOpen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [mute, setMute] = React.useState(false);
 
   useEffect(() => {
     const theme = JSON.parse(localStorage.getItem('darkMode'));
     if (theme) setDarkMode(JSON.parse(localStorage.getItem('darkMode')));
+    const muteMessages = JSON.parse(localStorage.getItem('mute'));
+    if (muteMessages) setMute(JSON.parse(localStorage.getItem('mute')));
     const handleResize = () => {
       setIsMobile(globalThis.innerWidth < 768);
       setCurrentHeight(globalThis.innerHeight);
@@ -39,15 +42,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     handleResize();
     return () => globalThis.removeEventListener('resize', handleResize);
   }, []);
-
   useEffect(() => {
     if (isMobile) setKeyboardOpen(fullHeight * 0.7 > currentHeight);
   }, [isMobile, fullHeight, currentHeight, keyboardOpen]);
-
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
     console.log("theme saved to local storage. dark mode: ", darkMode === null ? false : darkMode);
   }, [darkMode]);
+  useEffect(() => {
+    localStorage.setItem('mute', JSON.stringify(mute));
+    console.log("mute messages: ", mute === null ? false : mute);
+  }, [mute]);
 
   const colorMode = React.useMemo(
     () => ({
@@ -72,7 +77,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       </Head>
       <SessionProvider session={session}>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-          <Context.Provider value={{ user, setUser, darkMode, setDarkMode, colorMode, setInApp, isMobile, keyboardOpen, fullHeight, currentHeight }}>
+          <Context.Provider value={{
+            user, setUser, darkMode, setDarkMode, colorMode, setInApp, isMobile, keyboardOpen, fullHeight, currentHeight, mute, setMute
+          }}>
             <div className={darkMode ? styles.darkMode : (inApp ? styles.lightMode : undefined)}>
               {inApp && !keyboardOpen && <Navigation />}
               <Component {...pageProps} />

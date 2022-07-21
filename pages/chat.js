@@ -10,8 +10,10 @@ let socket;
 
 function Chat() {
     const [messages, setMessages] = React.useState([]);
-    const { user, isMobile, keyboardOpen, fullHeight, currentHeight } = React.useContext(Context);
+    const { user, isMobile, keyboardOpen, fullHeight, currentHeight, mute } = React.useContext(Context);
     const pageBottom = React.useRef();
+    let audio = new Audio("/message.mp3")
+
     React.useEffect(() => {
         // if (user.chat === null) route to find match (because there is no match yet)
         // on find match need to get matchedUser and chat (room id) patched to user
@@ -62,6 +64,7 @@ function Chat() {
         return send;
     }
     const onSend = (message) => {
+        !mute && audio.play();
         const send = getMessage(message);
         socket.emit('change', send);
         setMessages(send);
