@@ -1,10 +1,8 @@
 import { Paper, TextareaAutosize } from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-// import MessageSound from '../../public/water-drop-sound-effect.mp3';
 
 export default function Messages({ user, messages, currentHeight, isMobile, messagesPageBottom }) {
-
     return (
         <Paper
             sx={{ background: 'transparent', boxShadow: 'none', overflowY: 'auto', overflowX: 'hidden' }}

@@ -6,8 +6,10 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import { Fab, Paper, InputBase, IconButton, Box } from '@mui/material';
 
 export default function Input({ onSend, bottomPosition }) {
+  let audio = new Audio("/water-drop-sound-effect.mp3")
   const [input, setInput] = React.useState('');
   const handleSend = () => {
+    audio.play();
     onSend(input);
     setInput('');
   }
