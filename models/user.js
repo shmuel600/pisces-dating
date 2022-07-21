@@ -55,13 +55,11 @@ const user = new Schema({
         default: Date.now
     },
     chat: {
-        type: Schema.Types.ObjectId,
-        ref: Chat,
+        type: String,
         default: null
     },
     matchedUser: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
         default: null
     },
     chatBackground: {

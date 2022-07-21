@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    console.log("theme saved to local storage. dark mode: ", darkMode);
+    console.log("theme saved to local storage. dark mode: ", darkMode === null ? false : darkMode);
   }, [darkMode]);
 
   const colorMode = React.useMemo(

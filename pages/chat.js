@@ -1,59 +1,52 @@
 import * as React from 'react';
 import io from 'Socket.IO-client';
-import Input from '../components/chat/Input';
 import Header from '../components/chat/Header';
+import Input from '../components/chat/Input';
+import Background from '../components/chat/Background';
 import Messages from '../components/chat/Messages';
 import Context from '../contexts/Context';
 import styles from '../styles/Home.module.css';
 let socket;
 
 function Chat() {
+    const [messages, setMessages] = React.useState([]);
     const { user, isMobile, keyboardOpen, fullHeight, currentHeight } = React.useContext(Context);
-    const bottomPosition = isMobile ? (keyboardOpen ? '0%' : '10%') : '0%';
-    const messagesPageBottom = React.useRef();
-    // const onScreen = useOnScreen(messagesPageBottom, "-300px");
-    // console.log("is it viewed? ", onScreen);
-    // isMobile && console.log("mobile");
-    // keyboardOpen && console.log("keyboard open");
-    const previousMessages = user.chat?.messages === undefined ? [] : user.chat.messages;
-    const [messages, setMessages] = React.useState(previousMessages);
-    console.log("messages?", messages);
+    const pageBottom = React.useRef();
     React.useEffect(() => {
-        // console.log("use effect");
-        user.chat === null ? createChat() : socketInitializer();
+        // if (user.chat === null) route to find match (because there is no match yet)
+        // on find match need to get matchedUser and chat (room id) patched to user
+        // create chat only if user.chat exists in chat history - at `api/chat/history/${user.chat}` (need to add that route too)
+        // if user.chat doesnt exist in chat history, start chat
+        createChat();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    React.useEffect(() => {
+        // messages.length > 0 && update chat history at `api/chat/history/${user.chat}` (need to add that route too)
+    }, [messages]);
     const createChat = async () => {
         console.log("create chat");
-        const chat = await fetch("/api/chat", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: user._id })
-        }).catch((error) => console.log(error));
-        socketInitializer();
-        // console.log("id:", chat._id);
-        fetch(`/api/user/${user._id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat: chat._id })
-        }).catch((error) => console.log(error))
+        // handle creating chat history on mongoDB
+        startChat();
     }
-    const socketInitializer = async () => {
-        console.log("initialize chat");
-        // await fetch(`/api/chat/${user.chat._id}`);
-        socket = io();
-        // console.log(io);
+    const startChat = async () => {
+        console.log("start chat");
+        await fetch(`/api/chat/${user.chat}`);
+        // add here fetch from chat history at `api/chat/history/${user.chat}` (need to add that route too)
+        // setMessages based on fetched chat history
+        socket = io()
+        socket.emit('join', user.chat);
         socket.on('connect', () => {
-            console.log('connected');
+            console.log('connected')
         })
-        socket.on('update-input', msg => {
-            console.log("ELAD-CLIENT", msg);
+        socket.on('update', msg => {
             setMessages(msg);
             scrollToBottom();
         })
+        socket.on('joined', room => {
+            console.log("joined ", room);
+        })
     }
-    const onChangeHandler = async (message) => {
-        console.log("got message: ", message);
+    const getMessage = (text) => {
         const sentOn = new Date().toLocaleTimeString('en-US',
             {
                 hour12: false,
@@ -61,55 +54,47 @@ function Chat() {
                 minute: "numeric"
             });
         const send = [...messages, {
-            text: message,
+            text,
             sentBy: user.name,
             senderId: user._id,
-            // sentOn: (today.getHours() + ":" + today.getMinutes())
             sentOn
         }];
+        return send;
+    }
+    const onSend = (message) => {
+        const send = getMessage(message);
+        socket.emit('change', send);
         setMessages(send);
-        // console.log("user chat: ", user.chat?._id);
-
-        await socket.emit('input-change', send);
-        await fetch(`/api/chat/${user.chat._id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: send })
-        })
         scrollToBottom();
     }
     const scrollToBottom = () => {
-        messagesPageBottom.current?.scrollIntoView({ behavior: "smooth" });
+        console.log("scroll to bottom");
+        pageBottom.current?.scrollIntoView({ behavior: "smooth" });
     }
+
     return (
         <div style={{ maxHeight: `${fullHeight}`, padding: '0 1rem' }}>
-            {/* background */}
-            <div
-                style={{
-                    position: 'fixed',
-                    marginLeft: '-1rem',
-                    width: '100%',
-                    height: `${fullHeight * 1.2}px`,
-                    background: `url(${user.chatBackground})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: '50%'
-                }}
-            >
-            </div>
-            {/* chat */}
+            <Background
+                user={user}
+                fullHeight={fullHeight}
+            />
             <div className={styles.main} style={{ color: 'whitesmoke' }}>
-                {/* input */}
-                <div style={{
-                    position: 'fixed', bottom: `${bottomPosition}`, width: '100%', height: 70, transform: 'scale(1.025)',
-                    display: 'flex', justifyContent: 'center', padding: 5, paddingRight: 15, paddingTop: 5,
-                    backgroundImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent, transparent)'
-                }}>
-                    <Input onSend={onChangeHandler} />
-                </div>
-                {/* messages */}
-                <Messages user={user} messages={messages} currentHeight={currentHeight} isMobile={isMobile} messagesPageBottom={messagesPageBottom} />
-                {/* header */}
-                <Header isMobile={isMobile} />
+                <Input
+                    onSend={onSend}
+                    // bottomPosition={isMobile ? (keyboardOpen ? '0%' : '10%') : '0%'}
+                    bottomPosition={(isMobile && !keyboardOpen) ? '10%' : '0%'}
+                />
+                <Messages
+                    user={user}
+                    messages={messages}
+                    currentHeight={currentHeight}
+                    isMobile={isMobile}
+                    pageBottom={pageBottom}
+                />
+                <Header
+                    user={user}
+                    isMobile={isMobile}
+                />
             </div>
         </div >
     )

@@ -23,7 +23,9 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
             inputMonth.length === 2 && inputMonth > 0 && inputMonth <= 12 &&
             inputYear.length > 3 && inputYear <= (new Date).getFullYear()
         )
-        checkAge && setCheckAdult(
+        setCheckAdult(
+            inputDay.length === 2 && inputDay > 0 && inputDay <= 31 &&
+            inputMonth.length === 2 && inputMonth > 0 && inputMonth <= 12 &&
             inputYear.length > 3 && inputYear <= (new Date).getFullYear() - 16
         )
     }
@@ -43,7 +45,15 @@ export default function GeneralDetails({ handleNext, name, setName, gender, setG
                     First name
                 </Typography>
                 <Box>
-                    <OutlinedInput size='small' placeholder="I am" onChange={(e) => setName(e.target.value)} defaultValue={name}
+                    <OutlinedInput
+                        size='small'
+                        placeholder="I am"
+                        onChange={(e) => {
+                            const firstLetter = e.target.value[0];
+                            const rest = e.target.value.slice(1, e.target.value.length);
+                            setName(firstLetter.toUpperCase() + rest.toLowerCase())
+                        }}
+                        defaultValue={name}
                         onBlur={() => setCheckName(name.length >= 2)}
                     />
                     {!checkName && <Typography sx={{ color: '#d74545', fontSize: 12 }}>{'Name should have at least 2 characters'}</Typography>}

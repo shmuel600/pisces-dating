@@ -6,7 +6,7 @@ const handler = async (req, res) => {
     if (req.method === 'GET') {
         console.log("GET by user id");
         try {
-            const user = await User.findById(id).populate('chat').populate('matchedUser');
+            const user = await User.findById(id);
             return res.status(200).send(user);
         }
         catch (error) {
